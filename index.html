@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex">
     <title>Pleated Drapery Calculator</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
@@ -48,10 +49,10 @@
         margin: 20px 0px 0px 20px;
         padding: 40px;
         background-color: gainsboro;
+        
       }
       table {
-        float: none;
-        margin-right: 20px;
+        margin-right: 40px;
       }
       td {
         text-align: left;
@@ -105,48 +106,32 @@
 
       /* override styles when printing */
       @media print {
-        html,
-        body,
-        input,
-        select {
-          font-size: 48px;
+        #app {
+          font-size: 7px;
+          
         }
-        input,
-        select {
-          border: none;
-        }
-        td {
-          min-width: 500px;
-        }
-        .wide {
-          width: 600px;
-        }
-        .comment {
-          font-size: 48px;
-          padding: 50px;
-        }
-        .header {
-          display: block;
-          position: absolute;
-          top: 0px;
-          right: 0px;
-          background-color: white;
-        }
-        .showPrint {
-          display: block;
-        }
-        .hidePrint {
-          display: none;
-        }
-        .printTip {
-          display: none;
-        }
+
+        .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .section {
+        margin: 0px 20px 40px 0px;
+        padding: 0px;
+              
+      }
+      .total {
+        outline:1px black solid;
+      }
+      td {
+        padding: 1px;
+      }
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <h1>Pleated Drapery Configurator</h1>
+      <h1>Pleated Drapery Configurator <span style="color:#bbb;">(CTRL+P to Print)</span></h1>
       <!-- <h3 class="printTip">Press CRTL + P to save as PDF</h3> -->
 
       <div class="header">
@@ -468,6 +453,84 @@
                   />
                 </td>
               </tr>
+              <tr>
+                <td>Shirr Top Bottom</td>
+                <td>
+                  <select name="" id="" v-model="shirr">
+                    <option value="none">None</option>
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                    <option value="both">Top & Bottom</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Heading Size</td>
+                <td>
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    v-model="headingSize"
+                    min="0"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Rod Pocket Size</td>
+                <td>
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    v-model="rodPocketSize"
+                    min="0"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Lining</td>
+                <td>
+                  <select name="" id="" v-model="lining" @change="update()">
+                    <option :value="false">Unlined</option>
+                    <option :value="true">Lined</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr v-show="lining">
+                <td>Type of Lining</td>
+                <td>
+                  <select name="" id="" v-model="liningType">
+                    <option value="RoyalSateen">Royal Sateen</option>
+                    <option value="COCOWeatherGuard">COCO Weather Guard</option>
+                    <option value="sussex">Sussex</option>
+                    <option value="COCOTherafoam">COCO Therafoam</option>
+                    <option value="RMSheen">R & M Sheen</option>
+                    <!-- <option value="">Other (See Below)</option> -->
+                  </select>
+                </td>
+              </tr>
+              <tr v-show="lining">
+                <td>Lining Color</td>
+                <td>
+                  <select name="" id="" v-model="liningColor">
+                    <option value="white">White</option>
+                    <option value="ivory">Ivory</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Pin Setting</td>
+                <td>
+                  <select name="" id="" v-model="pinSetting">
+                    <option value="regular">Regular Rod (1.75")</option>
+                    <option value="decorative">Decorative Rod (0.5")</option>
+                    <option value="ceiling">Ceiling Rod (1.5")</option>
+                  </select>
+                </td>
+              </tr>
 
               <!-- <tr>
           <td></td>
@@ -561,7 +624,7 @@
               </tr>
               <tr>
                 <td colspan="2">
-                  <span style="color: dodgerblue"
+                  <span style="color: red"
                     >{{ this.fullnessMessage }}</span
                   >
                 </td>
@@ -609,83 +672,7 @@
 
           <div>
             <table>
-              <tr>
-                <td>Shirr Top Bottom</td>
-                <td>
-                  <select name="" id="" v-model="shirr">
-                    <option value="top">Top</option>
-                    <option value="bottom">Bottom</option>
-                    <option value="both">Top & Bottom</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Heading Size</td>
-                <td>
-                  <input
-                    type="number"
-                    name=""
-                    id=""
-                    v-model="headingSize"
-                    min="0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Rod Pocket Size</td>
-                <td>
-                  <input
-                    type="number"
-                    name=""
-                    id=""
-                    v-model="rodPocketSize"
-                    min="0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Lining</td>
-                <td>
-                  <select name="" id="" v-model="lining" @change="update()">
-                    <option :value="false">Unlined</option>
-                    <option :value="true">Lined</option>
-                  </select>
-                </td>
-              </tr>
-
-              <tr v-show="lining">
-                <td>Type of Lining</td>
-                <td>
-                  <select name="" id="" v-model="liningType">
-                    <option value="RoyalSateen">Royal Sateen</option>
-                    <option value="COCOWeatherGuard">COCO Weather Guard</option>
-                    <option value="sussex">Sussex</option>
-                    <option value="COCOTherafoam">COCO Therafoam</option>
-                    <option value="RMSheen">R & M Sheen</option>
-                    <!-- <option value="">Other (See Below)</option> -->
-                  </select>
-                </td>
-              </tr>
-              <tr v-show="lining">
-                <td>Lining Color</td>
-                <td>
-                  <select name="" id="" v-model="liningColor">
-                    <option value="white">White</option>
-                    <option value="ivory">Ivory</option>
-                  </select>
-                </td>
-              </tr>
-
-              <tr>
-                <td>Pin Setting</td>
-                <td>
-                  <select name="" id="" v-model="pinSetting">
-                    <option value="regular">Regular Rod (1.75")</option>
-                    <option value="decorative">Decorative Rod (0.5")</option>
-                    <option value="ceiling">Ceiling Rod (1.5")</option>
-                  </select>
-                </td>
-              </tr>
+              
             </table>
           </div>
         </div>
@@ -698,7 +685,7 @@
         </table>
       </div>
 
-      <div style="display: flex">
+      <div class="flex-container">
         <!-------------------- Pleats --------------------->
         <div class="section" style="width: 50%">
           <table>
@@ -728,8 +715,10 @@
                   <option value="inverted">Inverted Pleated</option>
                 </select>
               </td>
-              <td>
-                <span style="color: dodgerblue">{{ this.pleatMessage }}</span>
+              </tr>
+              <tr>
+              <td colspan="2">
+                <span style="color: red">{{ this.fullnessMessage }}</span>
               </td>
             </tr>
           </table>
@@ -775,7 +764,7 @@
       </div>
 
       <!-------------------- Trimming --------------------->
-      <div style="display: flex">
+      <div  class="flex-container">
         <div class="section" style="width: 50%">
           <table>
             <tr>
@@ -945,7 +934,7 @@
       </div>
 
       <!-------------------- Total --------------------->
-      <table class="section" style="background-color: aquamarine">
+      <table class="section total" style="background-color: aquamarine">
         <tr>
           <td class="big bold">Unit price</td>
           <td class="big bold green">${{ unitCost }}</td>
@@ -1009,17 +998,17 @@
           pricePoint: null,
           panelOrPair: "panel",
           quantity: 1,
-          rodWidth: 48,
-          leftReturn: 3.5,
-          rightReturn: 3.5,
-          overlap: 3.5,
+          rodWidth: 0,
+          leftReturn: 0,
+          rightReturn: 0,
+          overlap: 0,
           COM: false,
           finishedWidth: null,
           fullness: 2,
           fullnessOptions: [1.5, 2, 2.25, 2.5, 3],
           fullnessMessage: "",
           totalWidths: null,
-          finishedLength: 65,
+          finishedLength: 0,
           cutLength: 0,
           shirr: null,
           headingSize: null,
