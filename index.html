@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex">
+    <meta name="robots" content="noindex" />
     <title>Pleated Drapery Calculator</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
@@ -49,7 +49,6 @@
         margin: 20px 0px 0px 20px;
         padding: 40px;
         background-color: gainsboro;
-        
       }
       table {
         margin-right: 40px;
@@ -108,30 +107,31 @@
       @media print {
         #app {
           font-size: 7px;
-          
         }
 
         .flex-container {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      .section {
-        margin: 0px 20px 40px 0px;
-        padding: 0px;
-              
-      }
-      .total {
-        outline:1px black solid;
-      }
-      td {
-        padding: 1px;
-      }
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .section {
+          margin: 0px 20px 40px 0px;
+          padding: 0px;
+        }
+        .total {
+          outline: 1px black solid;
+        }
+        td {
+          padding: 1px;
+        }
       }
     </style>
   </head>
   <body>
     <div id="app">
-      <h1>Pleated Drapery Configurator <span style="color:#bbb;">(CTRL+P to Print)</span></h1>
+      <h1>
+        Pleated Drapery Configurator
+        <span style="color: #bbb">(CTRL+P to Print)</span>
+      </h1>
       <!-- <h3 class="printTip">Press CRTL + P to save as PDF</h3> -->
 
       <div class="header">
@@ -164,535 +164,439 @@
       </div>
 
       <!-- <table class="address">
-        <tr>
-          <td>Quote #</td>
-          <td><input type="text" /></td>
-        </tr>
-        <tr>
-          <td>Date</td>
-          <td><input type="date" /></td>
-        </tr>
-      </table>
-  
-      <div class="divider"><hr /></div>
-  
-      <table>
-        <tr>
-          <td><strong>Bill To</strong></td>
-          <td><input type="text" v-model="billTo.name" /></td>
-        </tr>
-  
-        <tr>
-          <td>Address</td>
-          <td><input type="text" class="wide" v-model="billTo.address" /></td>
-        </tr>
-        <tr>
-          <td>City</td>
-          <td><input type="text" v-model="billTo.city" /></td>
-        </tr>
-        <tr>
-          <td>State</td>
-          <td>
-            <select v-model="billTo.state">
-              <option value=""></option>
-              <option value="AL">Alabama</option>
-              <option value="AK">Alaska</option>
-              <option value="AZ">Arizona</option>
-              <option value="AR">Arkansas</option>
-              <option value="CA">California</option>
-              <option value="CO">Colorado</option>
-              <option value="CT">Connecticut</option>
-              <option value="DE">Delaware</option>
-              <option value="DC">District Of Columbia</option>
-              <option value="FL">Florida</option>
-              <option value="GA">Georgia</option>
-              <option value="HI">Hawaii</option>
-              <option value="ID">Idaho</option>
-              <option value="IL">Illinois</option>
-              <option value="IN">Indiana</option>
-              <option value="IA">Iowa</option>
-              <option value="KS">Kansas</option>
-              <option value="KY">Kentucky</option>
-              <option value="LA">Louisiana</option>
-              <option value="ME">Maine</option>
-              <option value="MD">Maryland</option>
-              <option value="MA">Massachusetts</option>
-              <option value="MI">Michigan</option>
-              <option value="MN">Minnesota</option>
-              <option value="MS">Mississippi</option>
-              <option value="MO">Missouri</option>
-              <option value="MT">Montana</option>
-              <option value="NE">Nebraska</option>
-              <option value="NV">Nevada</option>
-              <option value="NH">New Hampshire</option>
-              <option value="NJ">New Jersey</option>
-              <option value="NM">New Mexico</option>
-              <option value="NY">New York</option>
-              <option value="NC">North Carolina</option>
-              <option value="ND">North Dakota</option>
-              <option value="OH">Ohio</option>
-              <option value="OK">Oklahoma</option>
-              <option value="OR">Oregon</option>
-              <option value="PA">Pennsylvania</option>
-              <option value="RI">Rhode Island</option>
-              <option value="SC">South Carolina</option>
-              <option value="SD">South Dakota</option>
-              <option value="TN">Tennessee</option>
-              <option value="TX">Texas</option>
-              <option value="UT">Utah</option>
-              <option value="VT">Vermont</option>
-              <option value="VA">Virginia</option>
-              <option value="WA">Washington</option>
-              <option value="WV">West Virginia</option>
-              <option value="WI">Wisconsin</option>
-              <option value="WY">Wyoming</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Zip Code</td>
-          <td><input type="text" v-model="billTo.zipCode" /></td>
-        </tr>
-        <tr>
-          <td>Acct #</td>
-          <td><input type="text" /></td>
-        </tr>
-        <tr>
-          <td>Sidemark</td>
-          <td><input type="text" /></td>
-        </tr>
-        <tr>
-          <td>PO#</td>
-          <td><input type="text" /></td>
-        </tr>
-      </table>
-  
-      <table>
-        <tr>
-          <td><strong>Ship To</strong></td>
-          <td><input type="text" v-model="shipTo.name" /></td>
-        </tr>
-        <tr>
-          <td>Address</td>
-          <td><input type="text" class="wide" v-model="shipTo.address" /></td>
-        </tr>
-        <tr>
-          <td>City</td>
-          <td><input type="text" v-model="shipTo.city" /></td>
-        </tr>
-        <tr>
-          <td>State</td>
-          <td>
-            <select v-model="shipTo.state">
-              <option value=""></option>
-              <option value="AL">Alabama</option>
-              <option value="AK">Alaska</option>
-              <option value="AZ">Arizona</option>
-              <option value="AR">Arkansas</option>
-              <option value="CA">California</option>
-              <option value="CO">Colorado</option>
-              <option value="CT">Connecticut</option>
-              <option value="DE">Delaware</option>
-              <option value="DC">District Of Columbia</option>
-              <option value="FL">Florida</option>
-              <option value="GA">Georgia</option>
-              <option value="HI">Hawaii</option>
-              <option value="ID">Idaho</option>
-              <option value="IL">Illinois</option>
-              <option value="IN">Indiana</option>
-              <option value="IA">Iowa</option>
-              <option value="KS">Kansas</option>
-              <option value="KY">Kentucky</option>
-              <option value="LA">Louisiana</option>
-              <option value="ME">Maine</option>
-              <option value="MD">Maryland</option>
-              <option value="MA">Massachusetts</option>
-              <option value="MI">Michigan</option>
-              <option value="MN">Minnesota</option>
-              <option value="MS">Mississippi</option>
-              <option value="MO">Missouri</option>
-              <option value="MT">Montana</option>
-              <option value="NE">Nebraska</option>
-              <option value="NV">Nevada</option>
-              <option value="NH">New Hampshire</option>
-              <option value="NJ">New Jersey</option>
-              <option value="NM">New Mexico</option>
-              <option value="NY">New York</option>
-              <option value="NC">North Carolina</option>
-              <option value="ND">North Dakota</option>
-              <option value="OH">Ohio</option>
-              <option value="OK">Oklahoma</option>
-              <option value="OR">Oregon</option>
-              <option value="PA">Pennsylvania</option>
-              <option value="RI">Rhode Island</option>
-              <option value="SC">South Carolina</option>
-              <option value="SD">South Dakota</option>
-              <option value="TN">Tennessee</option>
-              <option value="TX">Texas</option>
-              <option value="UT">Utah</option>
-              <option value="VT">Vermont</option>
-              <option value="VA">Virginia</option>
-              <option value="WA">Washington</option>
-              <option value="WV">West Virginia</option>
-              <option value="WI">Wisconsin</option>
-              <option value="WY">Wyoming</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>Zip Code</td>
-          <td><input type="text" v-model="shipTo.zipCode" /></td>
-        </tr>
-        <tr>
-          <td>Phone</td>
-          <td><input type="text" /></td>
-        </tr>
-        <tr>
-          <td>Fax</td>
-          <td><input type="text" /></td>
-        </tr>
-        <tr>
-          <td>Order</td>
-          <td><input type="text" /></td>
-        </tr>
-        <tr>
-          <td>Quote</td>
-          <td><input type="text" /></td>
-        </tr>
-      </table>
-  
-      <table class="hidePrint">
-        <tr>
-          <td><button @click="copyAddress">Copy from billing</button></td>
-        </tr>
-      </table> -->
+      <tr>
+        <td>Quote #</td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td>Date</td>
+        <td><input type="date" /></td>
+      </tr>
+    </table>
+    
+    <div class="divider"><hr /></div>
+    
+    <table>
+      <tr>
+        <td><strong>Bill To</strong></td>
+        <td><input type="text" v-model="billTo.name" /></td>
+      </tr>
+      
+      <tr>
+        <td>Address</td>
+        <td><input type="text" class="wide" v-model="billTo.address" /></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td><input type="text" v-model="billTo.city" /></td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td>
+          <select v-model="billTo.state">
+            <option value=""></option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Zip Code</td>
+        <td><input type="text" v-model="billTo.zipCode" /></td>
+      </tr>
+      <tr>
+        <td>Acct #</td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td>Sidemark</td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td>PO#</td>
+        <td><input type="text" /></td>
+      </tr>
+    </table>
+    
+    <table>
+      <tr>
+        <td><strong>Ship To</strong></td>
+        <td><input type="text" v-model="shipTo.name" /></td>
+      </tr>
+      <tr>
+        <td>Address</td>
+        <td><input type="text" class="wide" v-model="shipTo.address" /></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td><input type="text" v-model="shipTo.city" /></td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td>
+          <select v-model="shipTo.state">
+            <option value=""></option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Zip Code</td>
+        <td><input type="text" v-model="shipTo.zipCode" /></td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td>Fax</td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td>Order</td>
+        <td><input type="text" /></td>
+      </tr>
+      <tr>
+        <td>Quote</td>
+        <td><input type="text" /></td>
+      </tr>
+    </table>
+    
+    <table class="hidePrint">
+      <tr>
+        <td><button @click="copyAddress">Copy from billing</button></td>
+      </tr>
+    </table> -->
 
-      <!-------------------- Base cost --------------------->
-      <div class="section">
-        <div class="flex-container">
-          <div>
-            <table>
-              <tr>
-                <td>Panel or Pair</td>
-                <td>
-                  <select
-                    name=""
-                    id=""
-                    v-model.number="panelOrPair"
-                    @change="update()"
-                  >
-                    <option value="panel">Panel</option>
-                    <option value="pair">Pair</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Pattern</td>
-                <td><input type="text" /></td>
-              </tr>
-              <tr>
-                <td>Color</td>
-                <td><input type="text" /></td>
-              </tr>
-              <tr>
-                <td>Source</td>
-                <td><input type="text" /></td>
-              </tr>
-              <tr>
-                <td>COM</td>
-                <td>
-                  <select name="" id="" v-model="COM" @change="update()">
-                    <option :value="true">Yes</option>
-                    <option :value="false">No</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Width (in)</td>
-                <td>
-                  <select
-                    name="boltWidth"
-                    id=""
-                    v-model.number="boltWidth"
-                    @change="update()"
-                  >
-                    <option value="48">48</option>
-                    <option value="54">54</option>
-                    <option value="60">60</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Repeat</td>
-                <td>
-                  <input
-                    type="number"
-                    name="repeat"
-                    min="0"
-                    v-model.number="repeat"
-                    @change="update()"
-                  />
-                </td>
-              </tr>
-              <!-- <tr>
+      <!-------------------- Fabric --------------------->
+      <div class="flex-container">
+        <div class="section" style="width: 50%">
+          <h1>Fabric</h1>
+          <table>
+            <tr>
+              <td>COM</td>
+              <td>
+                <select name="" id="" v-model="COM" @change="update()">
+                  <option :value="true">Yes</option>
+                  <option :value="false">No</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Pattern</td>
+              <td><input type="text" /></td>
+            </tr>
+            <tr>
+              <td>Color</td>
+              <td><input type="text" /></td>
+            </tr>
+            <tr>
+              <td>Source</td>
+              <td><input type="text" /></td>
+            </tr>
+
+            <tr>
+              <td>Width (in)</td>
+              <td>
+                <select
+                  name="boltWidth"
+                  id=""
+                  v-model.number="boltWidth"
+                  @change="update()"
+                >
+                  <option value="48">48</option>
+                  <option value="54">54</option>
+                  <option value="60">60</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Repeat</td>
+              <td>
+                <input
+                  type="number"
+                  name="repeat"
+                  min="0"
+                  v-model.number="repeat"
+                  @change="update()"
+                />
+              </td>
+            </tr>
+            <!-- <tr>
           <td></td>
           <td style="font-size: 0.8em">
             Price Code Surcharge: +{{ repeatSurcharge }}
           </td>
         </tr> -->
 
-              <tr v-show="!COM">
-                <td>Price Code</td>
-                <td>
-                  <input
-                    type="number"
-                    name="priceCode"
-                    min="4"
-                    v-model.number="priceCode"
-                    @change="update()"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Shirr Top Bottom</td>
-                <td>
-                  <select name="" id="" v-model="shirr">
-                    <option value="none">None</option>
-                    <option value="top">Top</option>
-                    <option value="bottom">Bottom</option>
-                    <option value="both">Top & Bottom</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Heading Size</td>
-                <td>
-                  <input
-                    type="number"
-                    name=""
-                    id=""
-                    v-model="headingSize"
-                    min="0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Rod Pocket Size</td>
-                <td>
-                  <input
-                    type="number"
-                    name=""
-                    id=""
-                    v-model="rodPocketSize"
-                    min="0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Lining</td>
-                <td>
-                  <select name="" id="" v-model="lining" @change="update()">
-                    <option :value="false">Unlined</option>
-                    <option :value="true">Lined</option>
-                  </select>
-                </td>
-              </tr>
-
-              <tr v-show="lining">
-                <td>Type of Lining</td>
-                <td>
-                  <select name="" id="" v-model="liningType"  @change="update()">
-                    <option value="RoyalSateen">Royal Sateen</option>
-                    <option value="COCOWeatherGuard">COCO Weather Guard</option>
-                    <option value="sussex">Sussex</option>
-                    <option value="COCOTherafoam">COCO Therafoam</option>
-                    <option value="RMSheen">R & M Sheen</option>
-                    <option value="blackout">Blackout</option>
-                    <!-- <option value="">Other (See Below)</option> -->
-                  </select>
-                </td>
-              </tr>
-              <tr v-show="lining">
-                <td>Lining Color</td>
-                <td>
-                  <select name="" id="" v-model="liningColor">
-                    <option value="white">White</option>
-                    <option value="ivory">Ivory</option>
-                  </select>
-                </td>
-              </tr>
-
-              <tr>
-                <td>Pin Setting</td>
-                <td>
-                  <select name="" id="" v-model="pinSetting">
-                    <option value="regular">Regular Rod (1.75")</option>
-                    <option value="decorative">Decorative Rod (0.5")</option>
-                    <option value="ceiling">Ceiling Rod (1.5")</option>
-                  </select>
-                </td>
-              </tr>
-
-              <!-- <tr>
-          <td></td>
-          <td style="font-size: 0.8em">
-            Actual price code: {{ repeatSurcharge + priceCode }}
-          </td>
-        </tr> 
-  
-        <tr>
-          <td>Price</td>
-          <td><input type="text" /></td>
-        </tr>-->
-            </table>
-          </div>
-
-          <div>
-            <table>
-              <tr>
-                <td>Rod Width (in)</td>
-                <td>
-                  <input
-                    type="number"
-                    name="rodWidth"
-                    v-model.number="rodWidth"
-                    @change="update"
-                    min="0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Left Return (in)</td>
-                <td>
-                  <input
-                    type="number"
-                    name="leftReturn"
-                    v-model.number="leftReturn"
-                    @change="update"
-                    min="0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Right Return (in)</td>
-                <td>
-                  <input
-                    type="number"
-                    name="rightReturn"
-                    v-model.number="rightReturn"
-                    @change="update"
-                    min="0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Overlap (in)</td>
-                <td>
-                  <input
-                    type="number"
-                    name="overlap"
-                    v-model.number="overlap"
-                    @change="update"
-                    min="0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Finished Width (in)</td>
-                <td>
-                  <span class="bold">{{ this.finishedWidth }}</span>
-                </td>
-              </tr>
-
-              <tr>
-                <td>Fullness</td>
-                <td>
-                  <select
-                    name="fullness"
-                    id=""
-                    v-model.number="fullness"
-                    @change="update()"
-                  >
-                    <option
-                      v-for="item in fullnessOptions"
-                      :value="item"
-                      :key="item"
-                    >
-                      {{item}}
-                    </option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2">
-                  <span style="color: red"
-                    >{{ this.fullnessMessage }}</span
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>Total Widths</td>
-                <td>
-                  <span class="bold">{{ this.totalWidths }}</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Finished Length (in)</td>
-                <td>
-                  <input
-                    type="number"
-                    name="finishedLength"
-                    v-model.number="finishedLength"
-                    min="0"
-                    max="180"
-                    @change="update()"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Cut Length (in)</td>
-                <td class="bold">{{ this.cutLength }}</td>
-              </tr>
-              <tr>
-                <td>Extra for Repeat (in)</td>
-                <td class="bold">{{ this.fabricNeededForRepeat }}</td>
-              </tr>
-              <tr>
-                <td>Total Length (in)</td>
-                <td class="bold">{{ this.totalLength }}</td>
-              </tr>
-              <tr>
-                <td>Yardage Required</td>
-
-                <td>
-                  <span class="bold">{{ this.COMyardage }}</span>
-                </td>
-              </tr>
-            </table>
-          </div>
-
-          <div>
-            <table>
-              
-            </table>
-          </div>
+            <tr v-show="!COM">
+              <td>Price Code</td>
+              <td>
+                <input
+                  type="number"
+                  name="priceCode"
+                  min="4"
+                  v-model.number="priceCode"
+                  @change="update()"
+                />
+              </td>
+            </tr>
+          </table>
         </div>
-        <div class="divider"></div>
-        <table>
-          <tr>
-            <td class="bold big">Base Cost (D1)</td>
-            <td class="bold big green">${{ baseCost }}</td>
-          </tr>
-          <tr>
-            <td class="bold big">Blackout Upcharge (D7)</td>
-            <td class="bold big green">${{ blackoutCost }}</td>
-          </tr>
-        </table>
       </div>
 
+      <!-------------------- Panel or Pair --------------------->
       <div class="flex-container">
-        <!-------------------- Pleats --------------------->
         <div class="section" style="width: 50%">
+          <h1>Panel or Pair</h1>
+          <table>
+            <tr>
+              <td>Panel or Pair</td>
+              <td>
+                <select
+                  name=""
+                  id=""
+                  v-model.number="panelOrPair"
+                  @change="update()"
+                >
+                  <option value="panel">Panel</option>
+                  <option value="pair">Pair</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-------------------- Measurements --------------------->
+      <div class="flex-container">
+        <div class="section" style="width: 50%">
+          <h1>Measurements</h1>
+          <table>
+            <tr>
+              <td>Rod Width (in)</td>
+              <td>
+                <input
+                  type="number"
+                  name="rodWidth"
+                  v-model.number="rodWidth"
+                  @change="update"
+                  min="0"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Left Return (in)</td>
+              <td>
+                <input
+                  type="number"
+                  name="leftReturn"
+                  v-model.number="leftReturn"
+                  @change="update"
+                  min="0"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Right Return (in)</td>
+              <td>
+                <input
+                  type="number"
+                  name="rightReturn"
+                  v-model.number="rightReturn"
+                  @change="update"
+                  min="0"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Overlap (in)</td>
+              <td>
+                <input
+                  type="number"
+                  name="overlap"
+                  v-model.number="overlap"
+                  @change="update"
+                  min="0"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Finished Width (in)</td>
+              <td>
+                <span class="bold">{{ this.finishedWidth }}</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Fullness</td>
+              <td>
+                <select
+                  name="fullness"
+                  id=""
+                  v-model.number="fullness"
+                  @change="update()"
+                >
+                  <option
+                    v-for="item in fullnessOptions"
+                    :value="item"
+                    :key="item"
+                  >
+                    {{item}}
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <span style="color: red">{{ this.fullnessMessage }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Total Widths</td>
+              <td>
+                <span class="bold">{{ this.totalWidths }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Finished Length (in)</td>
+              <td>
+                <input
+                  type="number"
+                  name="finishedLength"
+                  v-model.number="finishedLength"
+                  min="0"
+                  max="180"
+                  @change="update()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Cut Length (in)</td>
+              <td class="bold">{{ this.cutLength }}</td>
+            </tr>
+            <tr>
+              <td>Extra for Repeat (in)</td>
+              <td class="bold">{{ this.fabricNeededForRepeat }}</td>
+            </tr>
+            <tr>
+              <td>Total Length (in)</td>
+              <td class="bold">{{ this.totalLength }}</td>
+            </tr>
+            <tr>
+              <td>Yardage Required</td>
+
+              <td>
+                <span class="bold">{{ this.COMyardage }}</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-------------------- Pleat Style --------------------->
+      <div class="flex-container">
+        <div class="section" style="width: 50%">
+          <h1>Pleat Style</h1>
           <table>
             <tr>
               <td>Pleat Type</td>
@@ -720,24 +624,106 @@
                   <option value="inverted">Inverted Pleated</option>
                 </select>
               </td>
-              </tr>
-              <tr>
+            </tr>
+            <tr>
               <td colspan="2">
                 <span style="color: red">{{ this.fullnessMessage }}</span>
               </td>
             </tr>
-          </table>
-
-          <table>
             <tr>
-              <td class="bold big">Pleat Upcharge</td>
-              <td class="bold big green">${{ pleatCost }}</td>
+              <td>Shirr Top Bottom</td>
+              <td>
+                <select name="" id="" v-model="shirr">
+                  <option value="none">None</option>
+                  <option value="top">Top</option>
+                  <option value="bottom">Bottom</option>
+                  <option value="both">Top & Bottom</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Heading Size</td>
+              <td>
+                <input
+                  type="number"
+                  name=""
+                  id=""
+                  v-model="headingSize"
+                  min="0"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Rod Pocket Size</td>
+              <td>
+                <input
+                  type="number"
+                  name=""
+                  id=""
+                  v-model="rodPocketSize"
+                  min="0"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Pin Setting</td>
+              <td>
+                <select name="" id="" v-model="pinSetting">
+                  <option value="regular">Regular Rod (1.75")</option>
+                  <option value="decorative">Decorative Rod (0.5")</option>
+                  <option value="ceiling">Ceiling Rod (1.5")</option>
+                </select>
+              </td>
             </tr>
           </table>
+          <!-- <table>
+      <tr>
+        <td class="bold big">Pleat Upcharge</td>
+        <td class="bold big green">${{ pleatCost }}</td>
+      </tr>
+    </table> -->
         </div>
+      </div>
 
-        <!-------------------- Interlining --------------------->
+      <!-------------------- Lining --------------------->
+      <div class="flex-container">
         <div class="section" style="width: 50%">
+          <h1>Lining</h1>
+          <table>
+            <tr>
+              <td>Lining</td>
+              <td>
+                <select name="" id="" v-model="lining" @change="update()">
+                  <option :value="false">Unlined</option>
+                  <option :value="true">Lined</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr v-show="lining">
+              <td>Type of Lining</td>
+              <td>
+                <select name="" id="" v-model="liningType" @change="update()">
+                  <option value="RoyalSateen">Royal Sateen</option>
+                  <option value="COCOWeatherGuard">COCO Weather Guard</option>
+                  <option value="sussex">Sussex</option>
+                  <option value="COCOTherafoam">COCO Therafoam</option>
+                  <option value="RMSheen">R & M Sheen</option>
+                  <option value="blackout">Blackout</option>
+                  <!-- <option value="">Other (See Below)</option> -->
+                </select>
+              </td>
+            </tr>
+            <tr v-show="lining">
+              <td>Lining Color</td>
+              <td>
+                <select name="" id="" v-model="liningColor">
+                  <option value="white">White</option>
+                  <option value="ivory">Ivory</option>
+                </select>
+              </td>
+            </tr>
+          </table>
           <table>
             <tr>
               <td>Interlining</td>
@@ -759,18 +745,20 @@
             </tr>
           </table>
 
-          <table>
-            <tr>
-              <td class="bold big">Interlining Upcharge (D7)</td>
-              <td class="bold big green">${{ interliningCost }}</td>
-            </tr>
-          </table>
+          <!-- <table>
+      <tr>
+        <td class="bold big">Interlining Upcharge (D7)</td>
+        <td class="bold big green">${{ interliningCost }}</td>
+      </tr>
+    </table> -->
         </div>
       </div>
 
       <!-------------------- Trimming --------------------->
-      <div  class="flex-container">
+      <div class="flex-container">
         <div class="section" style="width: 50%">
+          <h1>Trimming</h1>
+
           <table>
             <tr>
               <td>Horizontal Trimming</td>
@@ -839,23 +827,15 @@
               </td>
             </tr>
             <!--
-          <tr v-show="trimming.horizontal.included">
-            <td>Total</td>
-            <td>
-              <span class="bold">${{ trimming.horizontal.total }}</span>
-            </td>
-          </tr>
-          --></table>
-
-          <table>
-            <tr>
-              <td class="bold big">Horizontal Trimming</td>
-              <td class="bold big green">${{ trimming.horizontal.total }}</td>
-            </tr>
+    <tr v-show="trimming.horizontal.included">
+      <td>Total</td>
+      <td>
+        <span class="bold">${{ trimming.horizontal.total }}</span>
+      </td>
+    </tr>
+  -->
           </table>
-        </div>
 
-        <div class="section" style="width: 50%">
           <table>
             <tr>
               <td>Vertical Trimming</td>
@@ -922,46 +902,55 @@
               </td>
             </tr>
             <!-- <tr v-show="trimming.vertical.included">
-            <td>Total</td>
-            <td>
-              <span class="bold">${{ trimming.vertical.total }}</span>
-            </td>
-          </tr> -->
+  <td>Total</td>
+  <td>
+    <span class="bold">${{ trimming.vertical.total }}</span>
+  </td>
+</tr> -->
           </table>
 
-          <table>
-            <tr>
-              <td class="bold big">Vertical Trimming</td>
-              <td class="bold big green">${{ trimming.vertical.total }}</td>
-            </tr>
-          </table>
         </div>
       </div>
 
       <!-------------------- Total --------------------->
-      <table class="section total" style="background-color: aquamarine">
-        <tr>
-          <td class="big bold">Unit price</td>
-          <td class="big bold green">${{ unitCost }}</td>
-        </tr>
-        <tr>
-          <td class="big bold">Quantity</td>
-          <td class="big bold">
-            <input
-              type="number"
-              name=""
-              id=""
-              min="1"
-              v-model.number="quantity"
-              @change="updateAll()"
-            />
-          </td>
-        </tr>
-        <tr>
-          <td class="bold big">Total</td>
-          <td class="bold big green">${{ unitCost * quantity }}</td>
-        </tr>
-      </table>
+      <div class="flex-container">
+        <div class="section" style="width: 50%">
+          <h1>Total</h1>
+          <table>
+            <tr>
+              <td class="big bold">Unit price</td>
+              <td class="big bold green">${{ unitCost }}</td>
+            </tr>
+            <tr>
+              <td class="big bold">Quantity</td>
+              <td class="big bold">
+                <input
+                  type="number"
+                  name=""
+                  id=""
+                  min="1"
+                  v-model.number="quantity"
+                  @change="updateAll()"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="bold big">Total</td>
+              <td class="bold big green">${{ unitCost * quantity }}</td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+
+
+
+      
+
+
+
+
+
     </div>
 
     <script type="module">
@@ -1024,8 +1013,8 @@
           interlining: false,
           interliningColor: null,
           interliningCost: 0,
-          blackout:false,
-          blackoutCost:0,
+          blackout: false,
+          blackoutCost: 0,
           pinSetting: "regular",
           COMyardage: null,
           fabricNeededForRepeat: 0,
