@@ -501,12 +501,13 @@
               <tr v-show="lining">
                 <td>Type of Lining</td>
                 <td>
-                  <select name="" id="" v-model="liningType">
+                  <select name="" id="" v-model="liningType"  @change="update()">
                     <option value="RoyalSateen">Royal Sateen</option>
                     <option value="COCOWeatherGuard">COCO Weather Guard</option>
                     <option value="sussex">Sussex</option>
                     <option value="COCOTherafoam">COCO Therafoam</option>
                     <option value="RMSheen">R & M Sheen</option>
+                    <option value="blackout">Blackout</option>
                     <!-- <option value="">Other (See Below)</option> -->
                   </select>
                 </td>
@@ -679,8 +680,12 @@
         <div class="divider"></div>
         <table>
           <tr>
-            <td class="bold big">Base cost (table D1)</td>
+            <td class="bold big">Base Cost (D1)</td>
             <td class="bold big green">${{ baseCost }}</td>
+          </tr>
+          <tr>
+            <td class="bold big">Blackout Upcharge (D7)</td>
+            <td class="bold big green">${{ blackoutCost }}</td>
           </tr>
         </table>
       </div>
@@ -756,7 +761,7 @@
 
           <table>
             <tr>
-              <td class="bold big">Interlining (table D7)</td>
+              <td class="bold big">Interlining Upcharge (D7)</td>
               <td class="bold big green">${{ interliningCost }}</td>
             </tr>
           </table>
@@ -844,7 +849,7 @@
 
           <table>
             <tr>
-              <td class="bold big">Horizontal trimming</td>
+              <td class="bold big">Horizontal Trimming</td>
               <td class="bold big green">${{ trimming.horizontal.total }}</td>
             </tr>
           </table>
@@ -926,7 +931,7 @@
 
           <table>
             <tr>
-              <td class="bold big">Vertical trimming</td>
+              <td class="bold big">Vertical Trimming</td>
               <td class="bold big green">${{ trimming.vertical.total }}</td>
             </tr>
           </table>
@@ -1019,6 +1024,8 @@
           interlining: false,
           interliningColor: null,
           interliningCost: 0,
+          blackout:false,
+          blackoutCost:0,
           pinSetting: "regular",
           COMyardage: null,
           fabricNeededForRepeat: 0,
@@ -1060,8 +1067,6 @@
             //check pleat style selection and change fullness options
             if (this.pleatType == "1prong") {
               this.fullnessOptions = [1.5, 2];
-              //this.fullness = 1.5;
-              //this.pleatMessage = 'Fullness set to 1.5';
               this.fullnessMessage =
                 "1.5 is recommended fullness for 1 Prong Pinch Pleat";
             } else if (
@@ -1069,14 +1074,10 @@
               this.pleatType == "2prongtacked"
             ) {
               this.fullnessOptions = [1.5, 2, 2.25, 2.5];
-              //this.fullness = 2.25;
-              //this.pleatMessage = 'Fullness set to 2.25';
               this.fullnessMessage =
                 "2.25 is recommended fullness for 2 Prong Pleats";
             } else if (this.pleatType == "singleskip") {
               this.fullnessOptions = [1.5, 2, 2.25, 2.5];
-              //this.fullness = 2.5;
-              //this.pleatMessage = 'Fullness set to 2.5';
               this.fullnessMessage =
                 "2.5 is recommended fullness for Single Skip Pleat";
             } else {
@@ -1097,7 +1098,8 @@
             this.COMyardage = result.COMyardage;
             this.pricePoint = result.pricePoint;
             this.baseCost = result.D1;
-            this.interliningCost = result.D7;
+            this.interliningCost = result.interliningCost;
+            this.blackoutCost = result.blackoutCost;
             this.pleatCost = result.pleatCost;
             this.trimming.vertical.yardageRequired =
               result.trimming.vertical.yardageRequired;

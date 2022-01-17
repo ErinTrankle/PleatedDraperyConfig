@@ -17,6 +17,7 @@ export function masterFunction(data) {
 
       //be careful to use result.totalWidths and not data.totalWidths in the calculations
 
+      //instantiate return object
       var result = {
             trimming: {
                   vertical: {},
@@ -64,11 +65,12 @@ export function masterFunction(data) {
                   data.finishedLength,
                   data.COM
             );
-
       
       result.pleatCost = calculatePleat(data.pleatType,data.COM,result.totalWidths,data.pricePoint);
 
-      result.D7 = calculateD7(result.totalWidths, data.interlining, data.COM);
+      result.interliningCost = calculateD7(result.totalWidths, data.interlining, data.COM);
+
+      result.blackoutCost = calculateD7(result.totalWidths, data.liningType, data.COM);
 
       result.trimming = calculcateTrimming(
             data.trimming,
@@ -78,7 +80,7 @@ export function masterFunction(data) {
             data.boltWidth
       );
 
-      result.unitCost = result.D1 + result.trimming.total.cost + result.pleatCost + result.D7;
+      result.unitCost = result.D1 + result.trimming.total.cost + result.pleatCost + result.interliningCost + result.blackoutCost;
 
       console.log('masterFunction() end');
       console.log(result);
