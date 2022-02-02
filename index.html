@@ -134,239 +134,6 @@
       </h1>
       <!-- <h3 class="printTip">Press CRTL + P to save as PDF</h3> -->
 
-      <div class="header">
-        <img src="@/assets/rmcoco.svg" class="logo" />
-
-        <table>
-          <tr>
-            <td><strong>Custom Creations by RM COCO</strong></td>
-          </tr>
-          <tr>
-            <td>1389 Southern Expressway</td>
-          </tr>
-          <tr>
-            <td>Cape Girardeau, MO 63702-1270</td>
-          </tr>
-          <tr>
-            <td>Phone: 800-325-8025</td>
-          </tr>
-          <tr>
-            <td>Fax: 800-501-6810</td>
-          </tr>
-          <tr>
-            <td>
-              <a href="mailto:customcreations@rmcoco.com"
-                >customcreations@rmcoco.com</a
-              >
-            </td>
-          </tr>
-        </table>
-      </div>
-
-      <!-- <table class="address">
-      <tr>
-        <td>Quote #</td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
-        <td>Date</td>
-        <td><input type="date" /></td>
-      </tr>
-    </table>
-    
-    <div class="divider"><hr /></div>
-    
-    <table>
-      <tr>
-        <td><strong>Bill To</strong></td>
-        <td><input type="text" v-model="billTo.name" /></td>
-      </tr>
-      
-      <tr>
-        <td>Address</td>
-        <td><input type="text" class="wide" v-model="billTo.address" /></td>
-      </tr>
-      <tr>
-        <td>City</td>
-        <td><input type="text" v-model="billTo.city" /></td>
-      </tr>
-      <tr>
-        <td>State</td>
-        <td>
-          <select v-model="billTo.state">
-            <option value=""></option>
-            <option value="AL">Alabama</option>
-            <option value="AK">Alaska</option>
-            <option value="AZ">Arizona</option>
-            <option value="AR">Arkansas</option>
-            <option value="CA">California</option>
-            <option value="CO">Colorado</option>
-            <option value="CT">Connecticut</option>
-            <option value="DE">Delaware</option>
-            <option value="DC">District Of Columbia</option>
-            <option value="FL">Florida</option>
-            <option value="GA">Georgia</option>
-            <option value="HI">Hawaii</option>
-            <option value="ID">Idaho</option>
-            <option value="IL">Illinois</option>
-            <option value="IN">Indiana</option>
-            <option value="IA">Iowa</option>
-            <option value="KS">Kansas</option>
-            <option value="KY">Kentucky</option>
-            <option value="LA">Louisiana</option>
-            <option value="ME">Maine</option>
-            <option value="MD">Maryland</option>
-            <option value="MA">Massachusetts</option>
-            <option value="MI">Michigan</option>
-            <option value="MN">Minnesota</option>
-            <option value="MS">Mississippi</option>
-            <option value="MO">Missouri</option>
-            <option value="MT">Montana</option>
-            <option value="NE">Nebraska</option>
-            <option value="NV">Nevada</option>
-            <option value="NH">New Hampshire</option>
-            <option value="NJ">New Jersey</option>
-            <option value="NM">New Mexico</option>
-            <option value="NY">New York</option>
-            <option value="NC">North Carolina</option>
-            <option value="ND">North Dakota</option>
-            <option value="OH">Ohio</option>
-            <option value="OK">Oklahoma</option>
-            <option value="OR">Oregon</option>
-            <option value="PA">Pennsylvania</option>
-            <option value="RI">Rhode Island</option>
-            <option value="SC">South Carolina</option>
-            <option value="SD">South Dakota</option>
-            <option value="TN">Tennessee</option>
-            <option value="TX">Texas</option>
-            <option value="UT">Utah</option>
-            <option value="VT">Vermont</option>
-            <option value="VA">Virginia</option>
-            <option value="WA">Washington</option>
-            <option value="WV">West Virginia</option>
-            <option value="WI">Wisconsin</option>
-            <option value="WY">Wyoming</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>Zip Code</td>
-        <td><input type="text" v-model="billTo.zipCode" /></td>
-      </tr>
-      <tr>
-        <td>Acct #</td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
-        <td>Sidemark</td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
-        <td>PO#</td>
-        <td><input type="text" /></td>
-      </tr>
-    </table>
-    
-    <table>
-      <tr>
-        <td><strong>Ship To</strong></td>
-        <td><input type="text" v-model="shipTo.name" /></td>
-      </tr>
-      <tr>
-        <td>Address</td>
-        <td><input type="text" class="wide" v-model="shipTo.address" /></td>
-      </tr>
-      <tr>
-        <td>City</td>
-        <td><input type="text" v-model="shipTo.city" /></td>
-      </tr>
-      <tr>
-        <td>State</td>
-        <td>
-          <select v-model="shipTo.state">
-            <option value=""></option>
-            <option value="AL">Alabama</option>
-            <option value="AK">Alaska</option>
-            <option value="AZ">Arizona</option>
-            <option value="AR">Arkansas</option>
-            <option value="CA">California</option>
-            <option value="CO">Colorado</option>
-            <option value="CT">Connecticut</option>
-            <option value="DE">Delaware</option>
-            <option value="DC">District Of Columbia</option>
-            <option value="FL">Florida</option>
-            <option value="GA">Georgia</option>
-            <option value="HI">Hawaii</option>
-            <option value="ID">Idaho</option>
-            <option value="IL">Illinois</option>
-            <option value="IN">Indiana</option>
-            <option value="IA">Iowa</option>
-            <option value="KS">Kansas</option>
-            <option value="KY">Kentucky</option>
-            <option value="LA">Louisiana</option>
-            <option value="ME">Maine</option>
-            <option value="MD">Maryland</option>
-            <option value="MA">Massachusetts</option>
-            <option value="MI">Michigan</option>
-            <option value="MN">Minnesota</option>
-            <option value="MS">Mississippi</option>
-            <option value="MO">Missouri</option>
-            <option value="MT">Montana</option>
-            <option value="NE">Nebraska</option>
-            <option value="NV">Nevada</option>
-            <option value="NH">New Hampshire</option>
-            <option value="NJ">New Jersey</option>
-            <option value="NM">New Mexico</option>
-            <option value="NY">New York</option>
-            <option value="NC">North Carolina</option>
-            <option value="ND">North Dakota</option>
-            <option value="OH">Ohio</option>
-            <option value="OK">Oklahoma</option>
-            <option value="OR">Oregon</option>
-            <option value="PA">Pennsylvania</option>
-            <option value="RI">Rhode Island</option>
-            <option value="SC">South Carolina</option>
-            <option value="SD">South Dakota</option>
-            <option value="TN">Tennessee</option>
-            <option value="TX">Texas</option>
-            <option value="UT">Utah</option>
-            <option value="VT">Vermont</option>
-            <option value="VA">Virginia</option>
-            <option value="WA">Washington</option>
-            <option value="WV">West Virginia</option>
-            <option value="WI">Wisconsin</option>
-            <option value="WY">Wyoming</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>Zip Code</td>
-        <td><input type="text" v-model="shipTo.zipCode" /></td>
-      </tr>
-      <tr>
-        <td>Phone</td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
-        <td>Fax</td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
-        <td>Order</td>
-        <td><input type="text" /></td>
-      </tr>
-      <tr>
-        <td>Quote</td>
-        <td><input type="text" /></td>
-      </tr>
-    </table>
-    
-    <table class="hidePrint">
-      <tr>
-        <td><button @click="copyAddress">Copy from billing</button></td>
-      </tr>
-    </table> -->
-
       <!-------------------- Fabric --------------------->
       <div class="flex-container">
         <div class="section" style="width: 50%">
@@ -467,6 +234,94 @@
         </div>
       </div>
 
+      <!-------------------- Pleat Style --------------------->
+      <div class="flex-container">
+        <div class="section" style="width: 50%">
+          <h1>Pleat Style</h1>
+          <table>
+            <tr>
+              <td>Pleat Type</td>
+              <td>
+                <select name="" id="" v-model="pleatType" @change="update()">
+                  <option value="1prong">1 Prong Pinch Pleat</option>
+                  <option value="2prong">2 Prong Pinch Pleat</option>
+                  <option value="3prong">3 Prong Pinch Pleat</option>
+                  <option value="2prongtacked">2 Prong Tacked at Top</option>
+                  <option value="3prongtacked">3 Prong Tacked at Top</option>
+                  <option value="reverse">Reverse</option>
+                  <option value="softgoblet">Soft Goblet Pleat</option>
+                  <option value="cartridge">Cartridge</option>
+                  <option value="casual1prong">Casual 1 Prong</option>
+                  <option value="singleskip">Single Skip Pleat</option>
+                  <option value="clusterskip">Cluster Skip Pleat</option>
+                  <option value="sewonCOM">Sew on C.O.M. Ring Top</option>
+                  <option value="graduated">
+                    Pinch Pleated Graduated Valance
+                  </option>
+                  <option value="multigraduated">
+                    Pinch Pleated Multiple Graduated Valance
+                  </option>
+                  <option value="box">Box Pleat</option>
+                  <option value="inverted">Inverted Pleated</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Shirr Top Bottom</td>
+              <td>
+                <select name="" id="" v-model="shirr">
+                  <option value="none">None</option>
+                  <option value="top">Top</option>
+                  <option value="bottom">Bottom</option>
+                  <option value="both">Top & Bottom</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Heading Size</td>
+              <td>
+                <input
+                  type="number"
+                  name=""
+                  id=""
+                  v-model="headingSize"
+                  min="0"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Rod Pocket Size</td>
+              <td>
+                <input
+                  type="number"
+                  name=""
+                  id=""
+                  v-model="rodPocketSize"
+                  min="0"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Pin Setting</td>
+              <td>
+                <select name="" id="" v-model="pinSetting">
+                  <option value="regular">Regular Rod (1.75")</option>
+                  <option value="decorative">Decorative Rod (0.5")</option>
+                  <option value="ceiling">Ceiling Rod (1.5")</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+          <!-- <table>
+      <tr>
+        <td class="bold big">Pleat Upcharge</td>
+        <td class="bold big green">${{ pleatCost }}</td>
+      </tr>
+    </table> -->
+        </div>
+      </div>
+
+
       <!-------------------- Measurements --------------------->
       <div class="flex-container">
         <div class="section" style="width: 50%">
@@ -545,9 +400,7 @@
                   </option>
                 </select>
               </td>
-            </tr>
-            <tr>
-              <td colspan="2">
+              <td>
                 <span style="color: red">{{ this.fullnessMessage }}</span>
               </td>
             </tr>
@@ -593,97 +446,6 @@
         </div>
       </div>
 
-      <!-------------------- Pleat Style --------------------->
-      <div class="flex-container">
-        <div class="section" style="width: 50%">
-          <h1>Pleat Style</h1>
-          <table>
-            <tr>
-              <td>Pleat Type</td>
-              <td>
-                <select name="" id="" v-model="pleatType" @change="update()">
-                  <option value="1prong">1 Prong Pinch Pleat</option>
-                  <option value="2prong">2 Prong Pinch Pleat</option>
-                  <option value="3prong">3 Prong Pinch Pleat</option>
-                  <option value="2prongtacked">2 Prong Tacked at Top</option>
-                  <option value="3prongtacked">3 Prong Tacked at Top</option>
-                  <option value="reverse">Reverse</option>
-                  <option value="softgoblet">Soft Goblet Pleat</option>
-                  <option value="cartridge">Cartridge</option>
-                  <option value="casual1prong">Casual 1 Prong</option>
-                  <option value="singleskip">Single Skip Pleat</option>
-                  <option value="clusterskip">Cluster Skip Pleat</option>
-                  <option value="sewonCOM">Sew on C.O.M. Ring Top</option>
-                  <option value="graduated">
-                    Pinch Pleated Graduated Valance
-                  </option>
-                  <option value="multigraduated">
-                    Pinch Pleated Multiple Graduated Valance
-                  </option>
-                  <option value="box">Box Pleat</option>
-                  <option value="inverted">Inverted Pleated</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <span style="color: red">{{ this.fullnessMessage }}</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Shirr Top Bottom</td>
-              <td>
-                <select name="" id="" v-model="shirr">
-                  <option value="none">None</option>
-                  <option value="top">Top</option>
-                  <option value="bottom">Bottom</option>
-                  <option value="both">Top & Bottom</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Heading Size</td>
-              <td>
-                <input
-                  type="number"
-                  name=""
-                  id=""
-                  v-model="headingSize"
-                  min="0"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Rod Pocket Size</td>
-              <td>
-                <input
-                  type="number"
-                  name=""
-                  id=""
-                  v-model="rodPocketSize"
-                  min="0"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Pin Setting</td>
-              <td>
-                <select name="" id="" v-model="pinSetting">
-                  <option value="regular">Regular Rod (1.75")</option>
-                  <option value="decorative">Decorative Rod (0.5")</option>
-                  <option value="ceiling">Ceiling Rod (1.5")</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <!-- <table>
-      <tr>
-        <td class="bold big">Pleat Upcharge</td>
-        <td class="bold big green">${{ pleatCost }}</td>
-      </tr>
-    </table> -->
-        </div>
-      </div>
 
       <!-------------------- Lining --------------------->
       <div class="flex-container">
@@ -944,8 +706,9 @@
       </div>
 
 
-
+      <div style="height:400px"></div>
       
+
 
 
 
@@ -959,27 +722,6 @@
       calculator = new Vue({
         el: "#app",
         data: {
-          billTo: {
-            name: null,
-            address: null,
-            city: null,
-            state: null,
-            zipCode: null,
-            accountNo: null,
-            sideMark: null,
-            PO: null,
-          },
-          shipTo: {
-            name: null,
-            address: null,
-            city: null,
-            state: null,
-            zipCode: null,
-            phone: null,
-            fax: null,
-            order: null,
-            quote: null,
-          },
           pattern: null,
           color: null,
           source: null,
@@ -1102,14 +844,7 @@
             this.trimming.horizontal.total = result.trimming.horizontal.total;
             this.trimming.total.cost = result.trimming.total.cost;
             this.unitCost = result.unitCost;
-          },
-          copyAddress() {
-            this.shipTo.name = this.billTo.name;
-            this.shipTo.address = this.billTo.address;
-            this.shipTo.city = this.billTo.city;
-            this.shipTo.state = this.billTo.state;
-            this.shipTo.zipCode = this.billTo.zipCode;
-          },
+          }
         },
         mounted: function () {
           this.update();
