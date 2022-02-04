@@ -10,7 +10,7 @@ export function calculateFabricNeededForRepeat(cutLength, repeat) {
             fabricNeededForRepeat = 0;
       }
 
-      console.log('- fabricNeededForRepeat', fabricNeededForRepeat);
+      console.log('- fabricNeededForRepeat:', fabricNeededForRepeat);
 
       return fabricNeededForRepeat;
 }

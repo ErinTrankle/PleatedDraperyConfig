@@ -10,7 +10,7 @@ import { calculateFabricNeededForRepeat } from './calculations/calculateFabricNe
 import { calculateD7 } from './calculations/calculateD7.js';
 import { calculcateTrimming } from './calculations/calculateTrimming.js';
 import { calculatePleat } from './calculations/calculatePleat.js';
-import priceData from './calculations/priceData.json' assert {type:"json"};
+import priceData from './data/priceData.json' assert {type:"json"};
 
 export function masterFunction(data) {
       console.log('masterFunction() start');
@@ -84,6 +84,6 @@ export function masterFunction(data) {
 
       console.log('masterFunction() end');
       console.log(result);
-      console.log('////////////////////////////////////////////');
+      console.log('-----------------------------END--------------------------');
       return result;
 }

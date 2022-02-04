@@ -68,7 +68,7 @@ export function calculatePleat(pleatType,COM,totalWidths,pricePoint)
     
     
     else {
-        console.log('invalid pleatType');
+        console.log('- invalid pleatType');
         return 0;
     }
 }
