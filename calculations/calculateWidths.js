@@ -12,13 +12,13 @@ export function calculateWidths(
       const y = Math.ceil(x);
       const z = y - x;
 
-      if (panelOrPair == 'panel') {
+      if (panelOrPair == 'DRAPERYPANEL') {
             if (z > 0.9) {
                   return Math.floor(x);
             } else {
                   return Math.ceil(x);
             }
-      } else if (panelOrPair == 'pair') {
+      } else if (panelOrPair == 'DRAPERYPAIR') {
             if (z > 0.9) {
                   return Math.floor(x);
             } else {
