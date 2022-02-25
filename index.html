@@ -9,13 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
     <style>
-      .flex-container {
-        display: flex;
-        flex-wrap: nowrap;
-      }
 
-      .flex-container > div {
-      }
 
       #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -24,17 +18,13 @@
         text-align: left;
         color: #2c3e50;
         margin-top: 0px;
+
       }
       html,
       input,
       select {
         font-size: 1em;
       }
-
-      .bold {
-        font-weight: bold;
-      }
-
       input,
       select,
       textarea {
@@ -45,11 +35,34 @@
         font-weight: bold;
       }
 
+      .flex-container {
+        display: flex;
+        flex-wrap: nowrap;
+      }
+
       .section {
         margin: 20px 0px 0px 20px;
         padding: 40px;
         background-color: gainsboro;
       }
+
+      .header {
+        position:fixed;
+        height:40px;
+      }
+
+      .leftColumn {
+        position: fixed;
+        top:100px;
+      }
+
+      .rightColumn {
+        position: absolute;
+        left: 600px;
+        height:4000px;
+
+      }
+
       table {
         margin-right: 40px;
       }
@@ -61,529 +74,507 @@
         outline: 0px red solid;
       }
 
-      .wide {
-        width: 320px;
+      .bold {
+        font-weight: bold;
       }
 
-      .divider {
-        clear: both;
-        padding: 10px 0px 10px 0px;
-      }
 
-      .big {
-        font-size: 1.5em;
-      }
-      .asterisk {
-        color: red;
-        font-size: 1em;
-        display: none;
-      }
 
-      .logo {
-        height: 400px;
-        float: left;
-      }
-
-      .header {
-        display: none;
-      }
-
-      .printTip {
-        position: absolute;
-        right: 20px;
-        top: 0px;
-        color: dodgerblue;
-      }
-
-      .grey {
-        background-color: #e1e1e1;
-      }
-
-      .green {
-        color: green;
-      }
-
-      /* override styles when printing */
-      @media print {
-        #app {
-          font-size: 7px;
-        }
-
-        .flex-container {
-          display: flex;
-          flex-wrap: wrap;
-        }
-        .section {
-          margin: 0px 20px 40px 0px;
-          padding: 0px;
-        }
-        .total {
-          outline: 1px black solid;
-        }
-        td {
-          padding: 1px;
-        }
-      }
     </style>
   </head>
   <body>
     <div id="app">
-      <h1>
-        Pleated Drapery Configurator
-        
-      </h1>
-      <!-- <h3 class="printTip">Press CRTL + P to save as PDF</h3> -->
+      <div class="header">
+      <h1>Pleated Drapery Configurator</h1>
+    </div>
 
-      <!-------------------- Fabric --------------------->
-      <div class="flex-container">
-        <div class="section" style="width: 50%">
-          <h1>Fabric</h1>
-          <table>
-            <tr>
-              <td>COM</td>
-              <td>
-                <select name="" id="" v-model="COM" @change="update()">
-                  <option :value="true">Yes</option>
-                  <option :value="false">No</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Pattern</td>
-              <td><input type="text" /></td>
-            </tr>
-            <tr>
-              <td>Color</td>
-              <td><input type="text" /></td>
-            </tr>
-            <tr>
-              <td>Width (in)</td>
-              <td>
-                <select
-                  name="boltWidth"
-                  id=""
-                  v-model.number="boltWidth"
-                  @change="update()"
-                >
-                  <option value="48">48</option>
-                  <option value="54">54</option>
-                  <option value="60">60</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Repeat</td>
-              <td>
-                <input
-                  type="number"
-                  name="repeat"
-                  min="0"
-                  v-model.number="repeat"
-                  @change="update()"
-                />
-              </td>
-            </tr>
-            <!-- <tr>
+      <div class="leftColumn">
+        <!-------------------- Summary --------------------->
+
+        <div class="flex-container">
+          <div class="section" >
+            <h1>Summary</h1>
+            <table>
+              <tr>
+                <td class="big bold">Unit price</td>
+                <td class="big bold green">${{ unitCost }}</td>
+              </tr>
+              <tr>
+                <td class="big bold">Quantity</td>
+                <td class="big bold">
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    min="1"
+                    v-model.number="quantity"
+                    @change="updateAll()"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="bold big">Total</td>
+                <td class="bold big green">${{ unitCost * quantity }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="rightColumn">
+        <!-------------------- Fabric --------------------->
+        <div class="flex-container">
+          <div class="section" >
+            <h1>Fabric</h1>
+            <table>
+              <tr>
+                <td>COM</td>
+                <td>
+                  <select name="" id="" v-model="COM" @change="update()">
+                    <option :value="true">Yes</option>
+                    <option :value="false">No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Pattern</td>
+                <td><input type="text" /></td>
+              </tr>
+              <tr>
+                <td>Color</td>
+                <td><input type="text" /></td>
+              </tr>
+              <tr>
+                <td>Width (in)</td>
+                <td>
+                  <select
+                    name="boltWidth"
+                    id=""
+                    v-model.number="boltWidth"
+                    @change="update()"
+                  >
+                    <option value="48">48</option>
+                    <option value="54">54</option>
+                    <option value="60">60</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Repeat</td>
+                <td>
+                  <input
+                    type="number"
+                    name="repeat"
+                    min="0"
+                    v-model.number="repeat"
+                    @change="update()"
+                  />
+                </td>
+              </tr>
+              <!-- <tr>
           <td></td>
           <td style="font-size: 0.8em">
             Price Code Surcharge: +{{ repeatSurcharge }}
           </td>
         </tr> -->
 
-            <tr v-show="!COM">
-              <td>Price Code</td>
-              <td>
-                <input
-                  type="number"
-                  name="priceCode"
-                  min="4"
-                  v-model.number="priceCode"
-                  @change="update()"
-                />
-              </td>
-            </tr>
-          </table>
+              <tr v-show="!COM">
+                <td>Price Code</td>
+                <td>
+                  <input
+                    type="number"
+                    name="priceCode"
+                    min="4"
+                    v-model.number="priceCode"
+                    @change="update()"
+                  />
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <!-------------------- Panel or Pair --------------------->
-      <div class="flex-container">
-        <div class="section" style="width: 50%">
-          <h1>Panel or Pair</h1>
-          <table>
-            <tr>
-              <td>Panel or Pair</td>
-              <td>
-                <select
-                  name=""
-                  id=""
-                  v-model.number="panelOrPair"
-                  @change="update()"
-                >
-                  <option value="DRAPERYPANEL">Panel</option>
-                  <option value="DRAPERYPAIR">Pair</option>
-                </select>
-              </td>
-            </tr>
-          </table>
+        <!-------------------- Panel or Pair --------------------->
+        <div class="flex-container">
+          <div class="section" >
+            <h1>Panel or Pair</h1>
+            <table>
+              <tr>
+                <td>Panel or Pair</td>
+                <td>
+                  <select
+                    name=""
+                    id=""
+                    v-model.number="panelOrPair"
+                    @change="update()"
+                  >
+                    <option value="DRAPERYPANEL">Panel</option>
+                    <option value="DRAPERYPAIR">Pair</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <!-------------------- Pleat Style --------------------->
-      <div class="flex-container">
-        <div class="section" style="width: 50%">
-          <h1>Pleat Style</h1>
-          <table>
-            <tr>
-              <td>Pleat Type</td>
-              <td>
-                <select name="" id="" v-model="pleatType" @change="update()">
-                  <option value="1prong">1 Prong Pinch Pleat</option>
-                  <option value="2prong">2 Prong Pinch Pleat</option>
-                  <option value="3prong">3 Prong Pinch Pleat</option>
-                  <option value="2prongtacked">2 Prong Tacked at Top</option>
-                  <option value="3prongtacked">3 Prong Tacked at Top</option>
-                  <option value="reverse">Reverse</option>
-                  <option value="softgoblet">Soft Goblet Pleat</option>
-                  <option value="cartridge">Cartridge</option>
-                  <option value="casual1prong">Casual 1 Prong</option>
-                  <option value="singleskip">Single Skip Pleat</option>
-                  <option value="clusterskip">Cluster Skip Pleat</option>
-                  <option value="sewonCOM">Sew on C.O.M. Ring Top</option>
-                  <option value="graduated">
-                    Pinch Pleated Graduated Valance
-                  </option>
-                  <option value="multigraduated">
-                    Pinch Pleated Multiple Graduated Valance
-                  </option>
-                  <option value="box">Box Pleat</option>
-                  <option value="inverted">Inverted Pleated</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Shirr Top Bottom</td>
-              <td>
-                <select name="" id="" v-model="shirr">
-                  <option value="none">None</option>
-                  <option value="top">Top</option>
-                  <option value="bottom">Bottom</option>
-                  <option value="both">Top & Bottom</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Heading Size</td>
-              <td>
-                <input
-                  type="number"
-                  name=""
-                  id=""
-                  v-model="headingSize"
-                  min="0"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Rod Pocket Size</td>
-              <td>
-                <input
-                  type="number"
-                  name=""
-                  id=""
-                  v-model="rodPocketSize"
-                  min="0"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Pin Setting</td>
-              <td>
-                <select name="" id="" v-model="pinSetting">
-                  <option value="regular">Regular Rod (1.75")</option>
-                  <option value="decorative">Decorative Rod (0.5")</option>
-                  <option value="ceiling">Ceiling Rod (1.5")</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <!-- <table>
+        <!-------------------- Pleat Style --------------------->
+        <div class="flex-container">
+          <div class="section" >
+            <h1>Pleat Style</h1>
+            <table>
+              <tr>
+                <td>Pleat Type</td>
+                <td>
+                  <select name="" id="" v-model="pleatType" @change="update()">
+                    <option value="1prong">1 Prong Pinch Pleat</option>
+                    <option value="2prong">2 Prong Pinch Pleat</option>
+                    <option value="3prong">3 Prong Pinch Pleat</option>
+                    <option value="2prongtacked">2 Prong Tacked at Top</option>
+                    <option value="3prongtacked">3 Prong Tacked at Top</option>
+                    <option value="reverse">Reverse</option>
+                    <option value="softgoblet">Soft Goblet Pleat</option>
+                    <option value="cartridge">Cartridge</option>
+                    <option value="casual1prong">Casual 1 Prong</option>
+                    <option value="singleskip">Single Skip Pleat</option>
+                    <option value="clusterskip">Cluster Skip Pleat</option>
+                    <option value="sewonCOM">Sew on C.O.M. Ring Top</option>
+                    <option value="graduated">
+                      Pinch Pleated Graduated Valance
+                    </option>
+                    <option value="multigraduated">
+                      Pinch Pleated Multiple Graduated Valance
+                    </option>
+                    <option value="box">Box Pleat</option>
+                    <option value="inverted">Inverted Pleated</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Shirr Top Bottom</td>
+                <td>
+                  <select name="" id="" v-model="shirr">
+                    <option value="none">None</option>
+                    <option value="top">Top</option>
+                    <option value="bottom">Bottom</option>
+                    <option value="both">Top & Bottom</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>Heading Size</td>
+                <td>
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    v-model="headingSize"
+                    min="0"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Rod Pocket Size</td>
+                <td>
+                  <input
+                    type="number"
+                    name=""
+                    id=""
+                    v-model="rodPocketSize"
+                    min="0"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Pin Setting</td>
+                <td>
+                  <select name="" id="" v-model="pinSetting">
+                    <option value="regular">Regular Rod (1.75")</option>
+                    <option value="decorative">Decorative Rod (0.5")</option>
+                    <option value="ceiling">Ceiling Rod (1.5")</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+            <!-- <table>
       <tr>
         <td class="bold big">Pleat Upcharge</td>
         <td class="bold big green">${{ pleatCost }}</td>
       </tr>
     </table> -->
+          </div>
         </div>
-      </div>
 
+        <!-------------------- Measurements --------------------->
+        <div class="flex-container">
+          <div class="section" >
+            <h1>Measurements</h1>
+            <table>
+              <tr>
+                <td>Rod Width (in)</td>
+                <td>
+                  <input
+                    type="number"
+                    name="rodWidth"
+                    v-model.number="rodWidth"
+                    @change="update"
+                    min="0"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Left Return (in)</td>
+                <td>
+                  <input
+                    type="number"
+                    name="leftReturn"
+                    v-model.number="leftReturn"
+                    @change="update"
+                    min="0"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Right Return (in)</td>
+                <td>
+                  <input
+                    type="number"
+                    name="rightReturn"
+                    v-model.number="rightReturn"
+                    @change="update"
+                    min="0"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Overlap (in)</td>
+                <td>
+                  <input
+                    type="number"
+                    name="overlap"
+                    v-model.number="overlap"
+                    @change="update"
+                    min="0"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Finished Width (in)</td>
+                <td>
+                  <span class="bold">{{ this.finishedWidth }}</span>
+                </td>
+              </tr>
 
-      <!-------------------- Measurements --------------------->
-      <div class="flex-container">
-        <div class="section" style="width: 50%">
-          <h1>Measurements</h1>
-          <table>
-            <tr>
-              <td>Rod Width (in)</td>
-              <td>
-                <input
-                  type="number"
-                  name="rodWidth"
-                  v-model.number="rodWidth"
-                  @change="update"
-                  min="0"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Left Return (in)</td>
-              <td>
-                <input
-                  type="number"
-                  name="leftReturn"
-                  v-model.number="leftReturn"
-                  @change="update"
-                  min="0"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Right Return (in)</td>
-              <td>
-                <input
-                  type="number"
-                  name="rightReturn"
-                  v-model.number="rightReturn"
-                  @change="update"
-                  min="0"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Overlap (in)</td>
-              <td>
-                <input
-                  type="number"
-                  name="overlap"
-                  v-model.number="overlap"
-                  @change="update"
-                  min="0"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Finished Width (in)</td>
-              <td>
-                <span class="bold">{{ this.finishedWidth }}</span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Fullness</td>
-              <td>
-                <select
-                  name="fullness"
-                  id=""
-                  v-model.number="fullness"
-                  @change="update()"
-                >
-                  <option
-                    v-for="item in fullnessOptions"
-                    :value="item"
-                    :key="item"
+              <tr>
+                <td>Fullness</td>
+                <td>
+                  <select
+                    name="fullness"
+                    id=""
+                    v-model.number="fullness"
+                    @change="update()"
                   >
-                    {{item}}
-                  </option>
-                </select>
-              </td>
-              <td>
-                <span style="color: red">{{ this.fullnessMessage }}</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Total Widths</td>
-              <td>
-                <span class="bold">{{ this.totalWidths }}</span>
-              </td>
-            </tr>
-            <tr>
-              <td>Finished Length (in)</td>
-              <td>
-                <input
-                  type="number"
-                  name="finishedLength"
-                  v-model.number="finishedLength"
-                  min="0"
-                  max="180"
-                  @change="update()"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Cut Length (in)</td>
-              <td class="bold">{{ this.cutLength }}</td>
-            </tr>
-            <tr>
-              <td>Extra for Repeat (in)</td>
-              <td class="bold">{{ this.fabricNeededForRepeat }}</td>
-            </tr>
-            <tr>
-              <td>Total Length (in)</td>
-              <td class="bold">{{ this.totalLength }}</td>
-            </tr>
-            <tr>
-              <td>Yardage Required</td>
+                    <option
+                      v-for="item in fullnessOptions"
+                      :value="item"
+                      :key="item"
+                    >
+                      {{item}}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <span style="color: red">{{ this.fullnessMessage }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Total Widths</td>
+                <td>
+                  <span class="bold">{{ this.totalWidths }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Finished Length (in)</td>
+                <td>
+                  <input
+                    type="number"
+                    name="finishedLength"
+                    v-model.number="finishedLength"
+                    min="0"
+                    max="180"
+                    @change="update()"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Cut Length (in)</td>
+                <td class="bold">{{ this.cutLength }}</td>
+              </tr>
+              <tr>
+                <td>Extra for Repeat (in)</td>
+                <td class="bold">{{ this.fabricNeededForRepeat }}</td>
+              </tr>
+              <tr>
+                <td>Total Length (in)</td>
+                <td class="bold">{{ this.totalLength }}</td>
+              </tr>
+              <tr>
+                <td>Yardage Required</td>
 
-              <td>
-                <span class="bold">{{ this.COMyardage }}</span>
-              </td>
-            </tr>
-          </table>
+                <td>
+                  <span class="bold">{{ this.COMyardage }}</span>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
-      </div>
 
+        <!-------------------- Lining --------------------->
+        <div class="flex-container">
+          <div class="section" >
+            <h1>Lining</h1>
+            <table>
+              <tr>
+                <td>Lining</td>
+                <td>
+                  <select name="" id="" v-model="lining" @change="update()">
+                    <option :value="false">Unlined</option>
+                    <option :value="true">Lined</option>
+                  </select>
+                </td>
+              </tr>
 
-      <!-------------------- Lining --------------------->
-      <div class="flex-container">
-        <div class="section" style="width: 50%">
-          <h1>Lining</h1>
-          <table>
-            <tr>
-              <td>Lining</td>
-              <td>
-                <select name="" id="" v-model="lining" @change="update()">
-                  <option :value="false">Unlined</option>
-                  <option :value="true">Lined</option>
-                </select>
-              </td>
-            </tr>
+              <tr v-show="lining">
+                <td>Type of Lining</td>
+                <td>
+                  <select name="" id="" v-model="liningType" @change="update()">
+                    <option value="RoyalSateen">Royal Sateen</option>
+                    <option value="COCOWeatherGuard">COCO Weather Guard</option>
+                    <option value="sussex">Sussex</option>
+                    <option value="COCOTherafoam">COCO Therafoam</option>
+                    <option value="RMSheen">R & M Sheen</option>
+                    <option value="blackout">Blackout</option>
+                    <!-- <option value="">Other (See Below)</option> -->
+                  </select>
+                </td>
+              </tr>
+              <tr v-show="lining">
+                <td>Lining Color</td>
+                <td>
+                  <select name="" id="" v-model="liningColor">
+                    <option value="white">White</option>
+                    <option value="ivory">Ivory</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+            <table>
+              <tr>
+                <td>Interlining</td>
+                <td>
+                  <select
+                    name=""
+                    id=""
+                    v-model="interlining"
+                    @change="update()"
+                  >
+                    <option :value="true">Yes</option>
+                    <option :value="false">No</option>
+                  </select>
+                </td>
+              </tr>
+              <tr v-show="interlining">
+                <td>Color</td>
+                <td>
+                  <select name="" v-model="interliningColor" id="">
+                    <option value="white">White</option>
+                    <option value="ivory">Ivory</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
 
-            <tr v-show="lining">
-              <td>Type of Lining</td>
-              <td>
-                <select name="" id="" v-model="liningType" @change="update()">
-                  <option value="RoyalSateen">Royal Sateen</option>
-                  <option value="COCOWeatherGuard">COCO Weather Guard</option>
-                  <option value="sussex">Sussex</option>
-                  <option value="COCOTherafoam">COCO Therafoam</option>
-                  <option value="RMSheen">R & M Sheen</option>
-                  <option value="blackout">Blackout</option>
-                  <!-- <option value="">Other (See Below)</option> -->
-                </select>
-              </td>
-            </tr>
-            <tr v-show="lining">
-              <td>Lining Color</td>
-              <td>
-                <select name="" id="" v-model="liningColor">
-                  <option value="white">White</option>
-                  <option value="ivory">Ivory</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-          <table>
-            <tr>
-              <td>Interlining</td>
-              <td>
-                <select name="" id="" v-model="interlining" @change="update()">
-                  <option :value="true">Yes</option>
-                  <option :value="false">No</option>
-                </select>
-              </td>
-            </tr>
-            <tr v-show="interlining">
-              <td>Color</td>
-              <td>
-                <select name="" v-model="interliningColor" id="">
-                  <option value="white">White</option>
-                  <option value="ivory">Ivory</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-
-          <!-- <table>
+            <!-- <table>
       <tr>
         <td class="bold big">Interlining Upcharge (D7)</td>
         <td class="bold big green">${{ interliningCost }}</td>
       </tr>
     </table> -->
+          </div>
         </div>
-      </div>
 
-      <!-------------------- Trimming --------------------->
-      <div class="flex-container">
-        <div class="section" style="width: 50%">
-          <h1>Trimming</h1>
+        <!-------------------- Trimming --------------------->
+        <div class="flex-container">
+          <div class="section" >
+            <h1>Trimming</h1>
 
-          <table>
-            <tr>
-              <td>Horizontal Trimming</td>
-              <td>
-                <select
-                  name=""
-                  id=""
-                  v-model="trimming.horizontal.included"
-                  @change="update()"
-                >
-                  <option :value="true">Yes</option>
-                  <option :value="false">No</option>
-                </select>
-              </td>
-            </tr>
+            <table>
+              <tr>
+                <td>Horizontal Trimming</td>
+                <td>
+                  <select
+                    name=""
+                    id=""
+                    v-model="trimming.horizontal.included"
+                    @change="update()"
+                  >
+                    <option :value="true">Yes</option>
+                    <option :value="false">No</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr v-show="trimming.horizontal.included">
-              <td>COM</td>
-              <td>
-                <select
-                  name=""
-                  id=""
-                  v-model="trimming.horizontal.COM"
-                  @change="update()"
-                >
-                  <option :value="true">Yes</option>
-                  <option :value="false">No</option>
-                </select>
-              </td>
-            </tr>
+              <tr v-show="trimming.horizontal.included">
+                <td>COM</td>
+                <td>
+                  <select
+                    name=""
+                    id=""
+                    v-model="trimming.horizontal.COM"
+                    @change="update()"
+                  >
+                    <option :value="true">Yes</option>
+                    <option :value="false">No</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr v-show="trimming.horizontal.included">
-              <td>Pattern / Color</td>
-              <td>
-                <input type="text" v-model="trimming.horizontal.pattern" />
-              </td>
-            </tr>
-            <tr v-show="trimming.horizontal.included">
-              <td>Price / yd</td>
-              <td>
-                <input
-                  type="number"
-                  v-model="trimming.horizontal.price"
-                  @change="update"
-                />
-              </td>
-            </tr>
-            <tr v-show="trimming.horizontal.included">
-              <td>Yardage required</td>
-              <td>
-                <span class="bold"
-                  >{{ trimming.horizontal.yardageRequired }}</span
-                >
-              </td>
-            </tr>
-            <tr v-show="trimming.horizontal.included">
-              <td>Trim Cost</td>
-              <td>
-                <span class="bold">${{ trimming.horizontal.cost }}</span>
-              </td>
-            </tr>
-            <tr v-show="trimming.horizontal.included">
-              <td>Labor (table D5)</td>
-              <td>
-                <span class="bold">${{ trimming.horizontal.labor }}</span>
-              </td>
-            </tr>
-            <!--
+              <tr v-show="trimming.horizontal.included">
+                <td>Pattern / Color</td>
+                <td>
+                  <input type="text" v-model="trimming.horizontal.pattern" />
+                </td>
+              </tr>
+              <tr v-show="trimming.horizontal.included">
+                <td>Price / yd</td>
+                <td>
+                  <input
+                    type="number"
+                    v-model="trimming.horizontal.price"
+                    @change="update"
+                  />
+                </td>
+              </tr>
+              <tr v-show="trimming.horizontal.included">
+                <td>Yardage required</td>
+                <td>
+                  <span class="bold"
+                    >{{ trimming.horizontal.yardageRequired }}</span
+                  >
+                </td>
+              </tr>
+              <tr v-show="trimming.horizontal.included">
+                <td>Trim Cost</td>
+                <td>
+                  <span class="bold">${{ trimming.horizontal.cost }}</span>
+                </td>
+              </tr>
+              <tr v-show="trimming.horizontal.included">
+                <td>Labor (table D5)</td>
+                <td>
+                  <span class="bold">${{ trimming.horizontal.labor }}</span>
+                </td>
+              </tr>
+              <!--
     <tr v-show="trimming.horizontal.included">
       <td>Total</td>
       <td>
@@ -591,123 +582,85 @@
       </td>
     </tr>
   -->
-          </table>
-<br>
-          <table>
-            <tr>
-              <td>Vertical Trimming</td>
-              <td>
-                <select
-                  name=""
-                  id=""
-                  v-model="trimming.vertical.included"
-                  @change="update()"
-                >
-                  <option :value="true">Yes</option>
-                  <option :value="false">No</option>
-                </select>
-              </td>
-            </tr>
+            </table>
+            <br />
+            <table>
+              <tr>
+                <td>Vertical Trimming</td>
+                <td>
+                  <select
+                    name=""
+                    id=""
+                    v-model="trimming.vertical.included"
+                    @change="update()"
+                  >
+                    <option :value="true">Yes</option>
+                    <option :value="false">No</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr v-show="trimming.vertical.included">
-              <td>COM</td>
-              <td>
-                <select
-                  name=""
-                  id=""
-                  v-model="trimming.vertical.COM"
-                  @change="update()"
-                >
-                  <option :value="true">Yes</option>
-                  <option :value="false">No</option>
-                </select>
-              </td>
-            </tr>
+              <tr v-show="trimming.vertical.included">
+                <td>COM</td>
+                <td>
+                  <select
+                    name=""
+                    id=""
+                    v-model="trimming.vertical.COM"
+                    @change="update()"
+                  >
+                    <option :value="true">Yes</option>
+                    <option :value="false">No</option>
+                  </select>
+                </td>
+              </tr>
 
-            <tr v-show="trimming.vertical.included">
-              <td>Pattern / Color</td>
-              <td><input type="text" v-model="trimming.vertical.pattern" /></td>
-            </tr>
-            <tr v-show="trimming.vertical.included">
-              <td>Price / yd</td>
-              <td>
-                <input
-                  type="number"
-                  v-model="trimming.vertical.price"
-                  @change="update"
-                />
-              </td>
-            </tr>
-            <tr v-show="trimming.vertical.included">
-              <td>Yardage required</td>
-              <td>
-                <span class="bold"
-                  >{{ trimming.vertical.yardageRequired }}</span
-                >
-              </td>
-            </tr>
-            <tr v-show="trimming.vertical.included">
-              <td>Trim Cost</td>
-              <td>
-                <span class="bold">${{ trimming.vertical.cost }}</span>
-              </td>
-            </tr>
-            <tr v-show="trimming.vertical.included">
-              <td>Labor (table D9)</td>
-              <td>
-                <span class="bold">${{ trimming.vertical.labor }}</span>
-              </td>
-            </tr>
-            <!-- <tr v-show="trimming.vertical.included">
+              <tr v-show="trimming.vertical.included">
+                <td>Pattern / Color</td>
+                <td>
+                  <input type="text" v-model="trimming.vertical.pattern" />
+                </td>
+              </tr>
+              <tr v-show="trimming.vertical.included">
+                <td>Price / yd</td>
+                <td>
+                  <input
+                    type="number"
+                    v-model="trimming.vertical.price"
+                    @change="update"
+                  />
+                </td>
+              </tr>
+              <tr v-show="trimming.vertical.included">
+                <td>Yardage required</td>
+                <td>
+                  <span class="bold"
+                    >{{ trimming.vertical.yardageRequired }}</span
+                  >
+                </td>
+              </tr>
+              <tr v-show="trimming.vertical.included">
+                <td>Trim Cost</td>
+                <td>
+                  <span class="bold">${{ trimming.vertical.cost }}</span>
+                </td>
+              </tr>
+              <tr v-show="trimming.vertical.included">
+                <td>Labor (table D9)</td>
+                <td>
+                  <span class="bold">${{ trimming.vertical.labor }}</span>
+                </td>
+              </tr>
+              <!-- <tr v-show="trimming.vertical.included">
   <td>Total</td>
   <td>
     <span class="bold">${{ trimming.vertical.total }}</span>
   </td>
 </tr> -->
-          </table>
-
+            </table>
+          </div>
         </div>
       </div>
-
-      <!-------------------- Total --------------------->
-      <div class="flex-container">
-        <div class="section" style="width: 50%">
-          <h1>Total</h1>
-          <table>
-            <tr>
-              <td class="big bold">Unit price</td>
-              <td class="big bold green">${{ unitCost }}</td>
-            </tr>
-            <tr>
-              <td class="big bold">Quantity</td>
-              <td class="big bold">
-                <input
-                  type="number"
-                  name=""
-                  id=""
-                  min="1"
-                  v-model.number="quantity"
-                  @change="updateAll()"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td class="bold big">Total</td>
-              <td class="bold big green">${{ unitCost * quantity }}</td>
-            </tr>
-          </table>
-
-        </div>
-      </div>
-
-
-      <div style="height:400px"></div>
-      
-
-
-
-
-
 
     </div>
 
@@ -839,7 +792,7 @@
             this.trimming.horizontal.total = result.trimming.horizontal.total;
             this.trimming.total.cost = result.trimming.total.cost;
             this.unitCost = result.unitCost;
-          }
+          },
         },
         mounted: function () {
           this.update();
