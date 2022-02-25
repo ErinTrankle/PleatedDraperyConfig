@@ -9,8 +9,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
     <style>
-
-
       #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -18,7 +16,6 @@
         text-align: left;
         color: #2c3e50;
         margin-top: 0px;
-
       }
       html,
       input,
@@ -47,20 +44,19 @@
       }
 
       .header {
-        position:fixed;
-        height:40px;
+        position: fixed;
+        height: 40px;
       }
 
       .leftColumn {
         position: fixed;
-        top:100px;
+        top: 100px;
       }
 
       .rightColumn {
         position: absolute;
         left: 600px;
-        height:4000px;
-
+        height: 4000px;
       }
 
       table {
@@ -78,21 +74,22 @@
         font-weight: bold;
       }
 
-
-
+      .dynamic {
+        color: dodgerblue;
+      }
     </style>
   </head>
   <body>
     <div id="app">
       <div class="header">
-      <h1>Pleated Drapery Configurator</h1>
-    </div>
+        <h1>Pleated Drapery Configurator</h1>
+      </div>
 
       <div class="leftColumn">
         <!-------------------- Summary --------------------->
 
         <div class="flex-container">
-          <div class="section" >
+          <div class="section">
             <h1>Summary</h1>
             <table>
               <tr>
@@ -124,27 +121,77 @@
       <div class="rightColumn">
         <!-------------------- Fabric --------------------->
         <div class="flex-container">
-          <div class="section" >
+          <div class="section">
             <h1>Fabric</h1>
             <table>
               <tr>
-                <td>COM</td>
+                <td>C.O.M.</td>
                 <td>
-                  <select name="" id="" v-model="COM" @change="update()">
+                  <!-- <select name="" id="" v-model="COM" @change="update()">
                     <option :value="true">Yes</option>
                     <option :value="false">No</option>
+                  </select> -->
+                  <input
+                    type="radio"
+                    name="COM"
+                    :value="false"
+                    v-model="COM"
+                    @change="update()"
+                  />No
+                  <input
+                    type="radio"
+                    name="COM"
+                    :value="true"
+                    v-model="COM"
+                    @change="update()"
+                  />Yes
+                </td>
+              </tr>
+
+              <!--------- RM COCO options -------->
+              <tr v-show="!COM">
+                <td>Pattern</td>
+                <td>
+                  <select name="" id="" v-model="pattern">
+                    <option value="" >Select Pattern</option>
                   </select>
                 </td>
               </tr>
-              <tr>
-                <td>Pattern</td>
-                <td><input type="text" /></td>
-              </tr>
-              <tr>
+
+              <tr v-show="!COM">
                 <td>Color</td>
-                <td><input type="text" /></td>
+                <td><select name="" id="" v-model="color">
+                  <option value="">Select Color</option>
+                </select></td>
               </tr>
-              <tr>
+              <tr v-show="!COM">
+                <td>Width (in)</td>
+                <td>Populate dynamically based on fabric selection</td>
+              </tr>
+              <tr v-show="!COM">
+                <td>Repeat</td>
+                <td>Populate dynamically based on fabric selection</td>
+              </tr>
+
+              <tr v-show="!COM">
+                <td>Price Code</td>
+                <td>Populate dynamically based on fabric selection</td>
+              </tr>
+
+              <!------- COM options -->
+              <tr v-show="COM">
+                <td>Pattern</td>
+                <td><input type="text" v-model="pattern" /></td>
+              </tr>
+              <tr v-show="COM">
+                <td>Color</td>
+                <td><input type="text" v-model="color" /></td>
+              </tr>
+              <tr v-show="COM">
+                <td>Source</td>
+                <td><input type="text" v-model="source" /></td>
+              </tr>
+              <tr v-show="COM">
                 <td>Width (in)</td>
                 <td>
                   <select
@@ -159,7 +206,7 @@
                   </select>
                 </td>
               </tr>
-              <tr>
+              <tr v-show="COM">
                 <td>Repeat</td>
                 <td>
                   <input
@@ -171,32 +218,13 @@
                   />
                 </td>
               </tr>
-              <!-- <tr>
-          <td></td>
-          <td style="font-size: 0.8em">
-            Price Code Surcharge: +{{ repeatSurcharge }}
-          </td>
-        </tr> -->
-
-              <tr v-show="!COM">
-                <td>Price Code</td>
-                <td>
-                  <input
-                    type="number"
-                    name="priceCode"
-                    min="4"
-                    v-model.number="priceCode"
-                    @change="update()"
-                  />
-                </td>
-              </tr>
             </table>
           </div>
         </div>
 
         <!-------------------- Panel or Pair --------------------->
         <div class="flex-container">
-          <div class="section" >
+          <div class="section">
             <h1>Panel or Pair</h1>
             <table>
               <tr>
@@ -219,7 +247,7 @@
 
         <!-------------------- Pleat Style --------------------->
         <div class="flex-container">
-          <div class="section" >
+          <div class="section">
             <h1>Pleat Style</h1>
             <table>
               <tr>
@@ -306,7 +334,7 @@
 
         <!-------------------- Measurements --------------------->
         <div class="flex-container">
-          <div class="section" >
+          <div class="section">
             <h1>Measurements</h1>
             <table>
               <tr>
@@ -430,7 +458,7 @@
 
         <!-------------------- Lining --------------------->
         <div class="flex-container">
-          <div class="section" >
+          <div class="section">
             <h1>Lining</h1>
             <table>
               <tr>
@@ -504,7 +532,7 @@
 
         <!-------------------- Trimming --------------------->
         <div class="flex-container">
-          <div class="section" >
+          <div class="section">
             <h1>Trimming</h1>
 
             <table>
@@ -661,7 +689,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <script type="module">
