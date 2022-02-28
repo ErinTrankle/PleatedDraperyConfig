@@ -1,0 +1,17 @@
+
+  {
+    "unlinedLaborZeroTo108":27.14,
+    "linedLaborZeroTo108":31.17,
+    "unlinedLabor108andUp":29.85,
+    "linedLabor108andUp":34.29,
+    "unlinedEachAdditional12":7.76,
+    "linedEachAdditional12":7.53,
+    "liningCost":3.75,
+    "COMunlinedLaborZeroTo108":35.09,
+    "COMlinedLaborZeroTo108":38.90,
+    "COMunlinedLabor108andUp":38.60,
+    "COMlinedLabor108andUp":42.79,
+    "COMunlinedEachAdditional12":8.63,
+    "COMlinedEachAdditional12":10.78,
+    "COMliningCost":3.75
+  }

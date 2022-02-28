@@ -55,6 +55,7 @@
 
       .rightColumn {
         position: absolute;
+        top:100px;
         left: 600px;
         height: 4000px;
       }
@@ -166,16 +167,35 @@
               </tr>
               <tr v-show="!COM">
                 <td>Width (in)</td>
-                <td>Populate dynamically based on fabric selection</td>
+                <td>
+                  <select
+                    name="boltWidth"
+                    id=""
+                    v-model.number="boltWidth"
+                    @change="update()"
+                  >
+                    <option value="48">48</option>
+                    <option value="54">54</option>
+                    <option value="60">60</option>
+                  </select>
+                </td>
               </tr>
               <tr v-show="!COM">
                 <td>Repeat</td>
-                <td>Populate dynamically based on fabric selection</td>
+                <td>
+                  <input
+                    type="number"
+                    name="repeat"
+                    min="0"
+                    v-model.number="repeat"
+                    @change="update()"
+                  />
+                </td>
               </tr>
 
               <tr v-show="!COM">
                 <td>Price Code</td>
-                <td>Populate dynamically based on fabric selection</td>
+                <td><input type="number" name="" id="" v-model="priceCode" @change="update()"></td>
               </tr>
 
               <!------- COM options -->
@@ -323,12 +343,7 @@
                 </td>
               </tr>
             </table>
-            <!-- <table>
-      <tr>
-        <td class="bold big">Pleat Upcharge</td>
-        <td class="bold big green">${{ pleatCost }}</td>
-      </tr>
-    </table> -->
+
           </div>
         </div>
 
