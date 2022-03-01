@@ -1,4 +1,4 @@
-// D3 
+// D3 special pleat surcharge - imported by calculatePleat.js
 
 export function calculateD3(totalWidths, COM) {
       console.log('calculateD3() start');
@@ -6,25 +6,25 @@ export function calculateD3(totalWidths, COM) {
       if (COM == true) {
             switch (totalWidths) {
                   case 1:
-                        return 55;
+                        return 71;
                   case 2:
-                        return 111;
+                        return 142;
                   case 3:
-                        return 166;
+                        return 212;
                   case 4:
-                        return 221;
+                        return 283;
                   case 5:
-                        return 277;
+                        return 354;
                   case 6:
-                        return 332;
+                        return 425;
                   case 7:
-                        return 387;
+                        return 496;
                   case 8:
-                        return 443;
+                        return 566;
                   case 9:
-                        return 498;
+                        return 637;
                   case 10:
-                        return 553;
+                        return 708;
                   default:
                         console.log('- totalWidths out of scope');
                         return 0;
@@ -32,25 +32,25 @@ export function calculateD3(totalWidths, COM) {
       } else if (COM == false) {
             switch (totalWidths) {
                   case 1:
-                        return 50;
+                        return 62;
                   case 2:
-                        return 101;
+                        return 125;
                   case 3:
-                        return 151;
+                        return 187;
                   case 4:
-                        return 202;
+                        return 250;
                   case 5:
-                        return 252;
+                        return 312;
                   case 6:
-                        return 302;
+                        return 375;
                   case 7:
-                        return 353;
+                        return 437;
                   case 8:
-                        return 403;
+                        return 500;
                   case 9:
-                        return 454;
+                        return 562;
                   case 10:
-                        return 504;
+                        return 625;
                   default:
                         console.log('- totalWidths out of scope');
                         return 0;

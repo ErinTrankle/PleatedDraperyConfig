@@ -1,4 +1,4 @@
-// D2 - one and two prong pleats
+// D2 - one and two prong pleats - imported by calculatePleat.js
 
 export function calculateD2(totalWidths, COM) {
       console.log('calculateD2() start');
@@ -6,25 +6,25 @@ export function calculateD2(totalWidths, COM) {
       if (COM == true) {
             switch (totalWidths) {
                   case 1:
-                        return 28;
+                        return 35;
                   case 2:
-                        return 55;
+                        return 71;
                   case 3:
-                        return 83;
+                        return 106;
                   case 4:
-                        return 111;
+                        return 142;
                   case 5:
-                        return 138;
+                        return 177;
                   case 6:
-                        return 166;
+                        return 212;
                   case 7:
-                        return 194;
+                        return 248;
                   case 8:
-                        return 221;
+                        return 283;
                   case 9:
-                        return 249;
+                        return 319;
                   case 10:
-                        return 277;
+                        return 354;
                   default:
                         console.log('- totalWidths out of scope');
                         return 0;
@@ -32,25 +32,25 @@ export function calculateD2(totalWidths, COM) {
       } else if (COM == false) {
             switch (totalWidths) {
                   case 1:
-                        return 25;
+                        return 31;
                   case 2:
-                        return 50;
+                        return 63;
                   case 3:
-                        return 76;
+                        return 94;
                   case 4:
-                        return 101;
+                        return 125;
                   case 5:
-                        return 126;
+                        return 156;
                   case 6:
-                        return 151;
+                        return 188;
                   case 7:
-                        return 176;
+                        return 219;
                   case 8:
-                        return 202;
+                        return 250;
                   case 9:
-                        return 227;
+                        return 281;
                   case 10:
-                        return 252;
+                        return 313;
                   default:
                         console.log('- totalWidths out of scope');
                         return 0;

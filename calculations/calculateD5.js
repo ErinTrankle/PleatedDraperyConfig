@@ -1,4 +1,4 @@
-// D5
+// D5 horizontal trimming
 
 export function calculateD5(totalWidths, COM) {
       console.log('calculateD5() start');
@@ -6,25 +6,25 @@ export function calculateD5(totalWidths, COM) {
       if (COM == true) {
             switch (totalWidths) {
                   case 1:
-                        return 33;
+                        return 42;
                   case 2:
-                        return 66;
+                        return 84;
                   case 3:
-                        return 99;
+                        return 126;
                   case 4:
-                        return 132;
+                        return 168;
                   case 5:
-                        return 164;
+                        return 210;
                   case 6:
-                        return 197;
+                        return 253;
                   case 7:
-                        return 230;
+                        return 295;
                   case 8:
-                        return 263;
+                        return 337;
                   case 9:
-                        return 296;
+                        return 379;
                   case 10:
-                        return 329;
+                        return 421;
                   default:
                         console.log('- totalWidths out of scope');
                         return 0;
@@ -32,25 +32,25 @@ export function calculateD5(totalWidths, COM) {
       } else if (COM == false) {
             switch (totalWidths) {
                   case 1:
-                        return 30;
+                        return 37;
                   case 2:
-                        return 60;
+                        return 74;
                   case 3:
-                        return 90;
+                        return 111;
                   case 4:
-                        return 120;
+                        return 149;
                   case 5:
-                        return 150;
+                        return 186;
                   case 6:
-                        return 180;
+                        return 223;
                   case 7:
-                        return 210;
+                        return 260;
                   case 8:
-                        return 240;
+                        return 297;
                   case 9:
-                        return 270;
+                        return 334;
                   case 10:
-                        return 300;
+                        return 371;
                   default:
                         console.log('- totalWidths out of scope');
                         return 0;

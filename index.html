@@ -78,6 +78,9 @@
       .dynamic {
         color: dodgerblue;
       }
+      .message {
+        color:red;
+      }
     </style>
   </head>
   <body>
@@ -426,7 +429,7 @@
                   </select>
                 </td>
                 <td>
-                  <span style="color: red">{{ this.fullnessMessage }}</span>
+                  <span class="message">{{ this.fullnessMessage }}</span>
                 </td>
               </tr>
               <tr>
@@ -582,9 +585,19 @@
               </tr>
 
               <tr v-show="trimming.horizontal.included">
-                <td>Pattern / Color</td>
+                <td>Pattern</td>
                 <td>
-                  <input type="text" v-model="trimming.horizontal.pattern" />
+                  <select name="" id="" v-model="trimming.horizontal.pattern" >
+                    <option value="">select from trimming patterns</option>
+                  </select>
+                </td>
+              </tr>
+              <tr v-show="trimming.horizontal.included">
+                <td>Color</td>
+                <td>
+                  <select name="" id="" v-model="trimming.horizontal.color" >
+                    <option value="">trimming colors for selected pattern</option>
+                  </select>
                 </td>
               </tr>
               <tr v-show="trimming.horizontal.included">
@@ -594,6 +607,7 @@
                     type="number"
                     v-model="trimming.horizontal.price"
                     @change="update"
+                    placeholder="populate from selection"
                   />
                 </td>
               </tr>

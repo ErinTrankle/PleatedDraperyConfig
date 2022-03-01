@@ -8,25 +8,25 @@ export function calculateD7(totalWidths, interliningOrBlackout, COM) {
             if (COM == true) {
                   switch (totalWidths) {
                         case 1:
-                              return 80;
+                              return 103;
                         case 2:
-                              return 143;
+                              return 183;
                         case 3:
-                              return 209;
+                              return 267;
                         case 4:
-                              return 287;
+                              return 367;
                         case 5:
-                              return 362;
+                              return 463;
                         case 6:
-                              return 438;
+                              return 560;
                         case 7:
-                              return 513;
+                              return 657;
                         case 8:
-                              return 581;
+                              return 743;
                         case 9:
-                              return 656;
+                              return 840;
                         case 10:
-                              return 724;
+                              return 927;
                         default:
                               console.log(
                                     '- invalid totalWidths. must be 1-10'
@@ -36,25 +36,25 @@ export function calculateD7(totalWidths, interliningOrBlackout, COM) {
             } else {
                   switch (totalWidths) {
                         case 1:
-                              return 73;
+                              return 91;
                         case 2:
-                              return 131;
+                              return 162;
                         case 3:
-                              return 190;
+                              return 236;
                         case 4:
-                              return 261;
+                              return 324;
                         case 5:
-                              return 330;
+                              return 409;
                         case 6:
-                              return 399;
+                              return 494;
                         case 7:
-                              return 467;
+                              return 579;
                         case 8:
-                              return 529;
+                              return 656;
                         case 9:
-                              return 598;
+                              return 741;
                         case 10:
-                              return 660;
+                              return 818;
                         default:
                               console.log(
                                     '- invalid total width. must be 1-10'

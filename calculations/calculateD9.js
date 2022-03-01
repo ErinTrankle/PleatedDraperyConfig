@@ -12,40 +12,40 @@ export function calculateD9(finishedLength, COM, panelOrPair) {
 
       if (COM == true) {
             if (finishedLength <= 36) {
-                  return 24 * x;
+                  return 31 * x;
             } else if (finishedLength > 36 && finishedLength <= 48) {
-                  return 36 * x;
+                  return 46 * x;
             } else if (finishedLength > 48 && finishedLength <= 60) {
-                  return 42 * x;
+                  return 54 * x;
             } else if (finishedLength > 60 && finishedLength <= 72) {
-                  return 48 * x;
+                  return 61 * x;
             } else if (finishedLength > 72 && finishedLength <= 84) {
-                  return 60 * x;
+                  return 77 * x;
             } else if (finishedLength > 84 && finishedLength <= 96) {
-                  return 66 * x;
+                  return 85 * x;
             } else if (finishedLength > 96 && finishedLength <= 108) {
-                  return 72 * x;
+                  return 92 * x;
             } else if (finishedLength > 108) {
-                  let extra = Math.ceil((finishedLength - 108) / 12) * 12;
+                  let extra = Math.ceil((finishedLength - 108) / 12) * 15;
                   return (extra + 72) * x;
             }
       } else if (COM == false) {
             if (finishedLength <= 36) {
-                  return 22 * x;
+                  return 27 * x;
             } else if (finishedLength > 36 && finishedLength <= 48) {
-                  return 33 * x;
+                  return 41 * x;
             } else if (finishedLength > 48 && finishedLength <= 60) {
-                  return 38 * x;
+                  return 47 * x;
             } else if (finishedLength > 60 && finishedLength <= 72) {
-                  return 44 * x;
+                  return 54 * x;
             } else if (finishedLength > 72 && finishedLength <= 84) {
-                  return 55 * x;
+                  return 68 * x;
             } else if (finishedLength > 84 && finishedLength <= 96) {
-                  return 60 * x;
+                  return 75 * x;
             } else if (finishedLength > 96 && finishedLength <= 108) {
-                  return 66 * x;
+                  return 81 * x;
             } else if (finishedLength > 108) {
-                  let extra = Math.ceil((finishedLength - 108) / 12) * 11;
+                  let extra = Math.ceil((finishedLength - 108) / 12) * 14;
                   return (extra + 72) * x;
             }
       } else {
