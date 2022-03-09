@@ -19,9 +19,18 @@
 
     "COMunlinedLaborZeroTo108":44.92,
     "COMlinedLaborZeroTo108":49.79,
-    "COMunlinedLabor108andUp":49.41,
-    "COMlinedLabor108andUp":54.77,
+
+    "COMunlinedLabor108to120":49.41,
+    "COMlinedLabor108to120":54.77,
+
+    "COMunlinedLabor120to132":54.35,
+    "COMlinedLabor120to132":60.25,
+
+    "COMunlinedLabor132to144":59.79,
+    "COMlinedLabor132to144":66.28,
+
     "COMunlinedEachAdditional12":11.05,
     "COMlinedEachAdditional12":13.80,
+
     "COMliningCost":3.75
   }

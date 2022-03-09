@@ -12,27 +12,29 @@ export function calculateD1(
 
   const unlinedLaborZeroTo108 = pleatedDraperyLabor["unlinedLaborZeroTo108"];
   const linedLaborZeroTo108 = pleatedDraperyLabor["linedLaborZeroTo108"];
-
   const unlinedLabor108to120 = pleatedDraperyLabor["unlinedLabor108to120"];
   const linedLabor108to120 = pleatedDraperyLabor["linedLabor108to120"];
-
   const unlinedLabor120to132 = pleatedDraperyLabor["unlinedLabor120to132"];
   const linedLabor120to132 = pleatedDraperyLabor["linedLabor120to132"];
-
   const unlinedLabor132to144 = pleatedDraperyLabor["unlinedLabor132to144"];
   const linedLabor132to144 = pleatedDraperyLabor["linedLabor132to144"];
-
   const unlinedEachAdditional12 = pleatedDraperyLabor["unlinedEachAdditional12"];
   const linedEachAdditional12 = pleatedDraperyLabor["linedEachAdditional12"];
-
   const liningCost = pleatedDraperyLabor["liningCost"];
+
+
 
   const COMunlinedLaborZeroTo108 = pleatedDraperyLabor["COMunlinedLaborZeroTo108"];
   const COMlinedLaborZeroTo108 = pleatedDraperyLabor["COMlinedLaborZeroTo108"];
-  const COMunlinedLabor108andUp = pleatedDraperyLabor["COMunlinedLabor108andUp"];
-  const COMlinedLabor108andUp = pleatedDraperyLabor["COMlinedLabor108andUp"];
+  const COMunlinedLabor108to120 = pleatedDraperyLabor["COMunlinedLabor108to120"];
+  const COMlinedLabor108to120 = pleatedDraperyLabor["COMlinedLabor108to120"];
+  const COMunlinedLabor120to132 = pleatedDraperyLabor["COMunlinedLabor120to132"];
+  const COMlinedLabor120to132 = pleatedDraperyLabor["COMlinedLabor120to132"];
+  const COMunlinedLabor132to144 = pleatedDraperyLabor["COMunlinedLabor132to144"];
+  const COMlinedLabor132to144 = pleatedDraperyLabor["COMlinedLabor132to144"];
   const COMunlinedEachAdditional12 = pleatedDraperyLabor["COMunlinedEachAdditional12"];
   const COMlinedEachAdditional12 = pleatedDraperyLabor["COMlinedEachAdditional12"];
+
   const COMliningCost = pleatedDraperyLabor["COMliningCost"];
 
   if (finishedLength == 0) {
@@ -160,18 +162,21 @@ export function calculateD1(
 
       ////////////// > 144 ////////////////
       else if (finishedLength > 144) {
-        let x = Math.round(
+        //get base cost of first 144 inches
+            let x = Math.round(
           (totalWidths * unlinedLabor132to144 +
             totalWidths * 1 +
             ((144 + 18) / 36) * pricePoint * totalWidths) *
             2
         );
+        //calculate the cost for each additional 12 inches
         let extraCostPer12Inches =
           ((12 / 36) * pricePoint * totalWidths +
             unlinedEachAdditional12 * totalWidths) *
           2;
-        console.log("- extraCostPer12Inches:", extraCostPer12Inches);
+      //calculate the quantity of 12 inch increments
         let multiplier = Math.ceil((finishedLength - 144) / 12);
+        //calculate the additional cost
         let extraCost = Math.round(extraCostPer12Inches * multiplier);
         return x + extraCost;
       } else {
@@ -251,12 +256,12 @@ export function calculateD1(
 
       ////////////// > 144 ////////////////
       else if (finishedLength > 144) {
-        let x = Math.round(
-          (totalWidths * linedLabor132to144 +
-            (((144 + 14) / 36) * pricePoint + ((144 + 18) / 36) * liningCost) *
-              totalWidths) *
-            2
-        );
+            let x = Math.round(
+                  (totalWidths * (linedLabor132to144 + 1) +
+                    (((144 + 14) / 36) * pricePoint + ((144 + 14) / 36) * liningCost) *
+                      totalWidths) *
+                    2
+                );
 
         let extraCostPer12Inches =
           ((12 / 36) * pricePoint * totalWidths +
@@ -310,30 +315,31 @@ export function calculateD1(
       }
       ////////////// > 108 <= 120 ////////////////
       else if (finishedLength > 108 && finishedLength <= 120) {
-        let x = Math.round(
-          (totalWidths * COMunlinedLabor108andUp +
-            totalWidths * 1 +
-            ((120 + 18) / 36) * 0 * totalWidths) *
-            2
-        );
+        let x = Math.round(((totalWidths * COMunlinedLabor108to120) + (((120 + 18) / 36) * 0) * totalWidths) * 2);
         return x;
       }
-      ////////////// > 120 ////////////////
+      ////////////// > 120 <= 132 ////////////////
+      else if (finishedLength > 120 && finishedLength <= 132) {
+            let x = Math.round(((totalWidths * COMunlinedLabor120to132) + (((132 + 18) / 36) * 0) * totalWidths) * 2);
+            return x;
+          }
+      ////////////// > 132 <= 144 ////////////////
+      else if (finishedLength > 132 && finishedLength <= 144) {
+            let x = Math.round(((totalWidths * COMunlinedLabor132to144) + (((144 + 18) / 36) * 0) * totalWidths) * 2);
+            return x;
+          }
 
-      //first get the base cost of 120
-      else if (finishedLength > 120) {
-        let x = Math.round(
-          (totalWidths * COMunlinedLabor108andUp +
-            totalWidths * 1 +
-            ((120 + 18) / 36) * 0 * totalWidths) *
-            2
-        );
-        let extraCostPer12Inches = Math.round(
-          totalWidths * COMunlinedEachAdditional12 * 2
-        );
-        let multiplier = Math.ceil((finishedLength - 120) / 12);
-        let extraCost = Math.round(extraCostPer12Inches * multiplier);
-        return x + extraCost;
+      ////////////// > 144 ////////////////
+      else if (finishedLength > 144) {
+            // get base cost for first 144 inches
+            let x = Math.round(((totalWidths * COMunlinedLabor132to144) + (((144 + 18) / 36) * 0) * totalWidths) * 2);
+            // calculate cost for each additional 12 inches
+            let extraCostPer12Inches = Math.round(totalWidths * COMunlinedEachAdditional12 * 2);
+            // calculate how many extra 12 inch increments
+            let multiplier = Math.ceil((finishedLength - 144) / 12);
+            // caclulate additional cost
+            let extraCost = Math.round(extraCostPer12Inches * multiplier);
+            return x + extraCost;
       } else {
         console.log("- finishedLength is out of scope");
       }
@@ -363,7 +369,6 @@ export function calculateD1(
         } else {
           return null;
         }
-
         let x = Math.round(
           (totalWidths * COMlinedLaborZeroTo108 +
             (((finishedLengthRounded + 14) / 36) * 0 +
@@ -372,35 +377,54 @@ export function calculateD1(
             2
         );
         return x;
-      } else if (finishedLength > 108 && finishedLength <= 120) {
+      } 
+      
+      ////////////// > 108 <= 120 ////////////////
+      else if (finishedLength > 108 && finishedLength <= 120) {
         let x = Math.round(
-          (totalWidths * COMlinedLabor108andUp +
-            (((120 + 14) / 36) * 0 + ((120 + 18) / 36) * COMliningCost) *
+          (totalWidths * COMlinedLabor108to120 +
+            (((120 + 14) / 36) * 0 + ((120 + 14) / 36) * COMliningCost) *
               totalWidths) *
             2
         );
         return x;
       }
 
-      //first calculate the base cost for 120
-      else if (finishedLength > 120) {
+      ////////////// > 120 <= 132 ////////////////
+      else if (finishedLength > 120 && finishedLength <= 132) {
+            let x = Math.round(
+              (totalWidths * COMlinedLabor120to132 +
+                (((132 + 14) / 36) * 0 + ((132 + 14) / 36) * COMliningCost) *
+                  totalWidths) *
+                2
+            );
+            return x;
+          }
+    
+
+      ////////////// > 132 <= 144 ////////////////
+      else if (finishedLength > 132 && finishedLength <= 144) {
+            let x = Math.round(
+              (totalWidths * COMlinedLabor132to144 +
+                (((144 + 14) / 36) * 0 + ((144 + 14) / 36) * COMliningCost) *
+                  totalWidths) *
+                2
+            );
+            return x;
+          }
+    
+
+      ////////////// > 144 ////////////////
+      else if (finishedLength > 144) {
         let x = Math.round(
-          (totalWidths * COMlinedLabor108andUp +
-            (((120 + 14) / 36) * 0 + ((120 + 18) / 36) * COMliningCost) *
+          (totalWidths * COMlinedLabor132to144 +
+            (((144 + 14) / 36) * 0 + ((144 + 18) / 36) * COMliningCost) *
               totalWidths) *
             2
         );
-
-        //now calculate the extra inches
-        let extraCostPer12Inches =
-          Math.round(
-            ((totalWidths * 12) / 36) * COMliningCost +
-              COMlinedEachAdditional12 * totalWidths
-          ) * 2;
-        console.log("- extraCostPer12Inches:", extraCostPer12Inches);
-        let multiplier = Math.ceil((finishedLength - 120) / 12);
+        let extraCostPer12Inches = Math.round(((totalWidths * 12) / 36) * COMliningCost + COMlinedEachAdditional12 * totalWidths) * 2;
+        let multiplier = Math.ceil((finishedLength - 144) / 12);
         let extraCost = Math.ceil(extraCostPer12Inches * multiplier);
-
         return x + extraCost;
       } else {
         console.log("- finishedLength is out of scope");
