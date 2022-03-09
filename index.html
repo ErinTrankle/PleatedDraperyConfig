@@ -141,8 +141,8 @@
                   </select>
                 </td>
                 <td class="note">
-                  COM stands for Customers Own Merchandise. If they select YES
-                  they will enter their own fabric information.
+                  Customers Own Merchandise. If they select YES they will enter
+                  their own fabric information.
                 </td>
               </tr>
             </table>
@@ -167,7 +167,7 @@
               </tr>
               <tr>
                 <td>Width (in)</td>
-                <td>
+                <!-- <td>
                   <select
                     name="boltWidth"
                     id=""
@@ -178,7 +178,17 @@
                     <option value="54">54</option>
                     <option value="60">60</option>
                   </select>
+                </td> -->
+                <td>
+                  <input
+                    name="boltWidth"
+                    id=""
+                    v-model.number="boltWidth"
+                    @change="update()"
+                    type="number"
+                  />
                 </td>
+
                 <td class="note">
                   This field will populate dynamically based on the fabric
                   selected.
@@ -693,7 +703,7 @@
               </tr>
             </table>
 
-            <br><br>
+            <br /><br />
 
             <!------------ Vertical ------------------->
             <table>
@@ -893,7 +903,6 @@
                 </td>
               </tr>
             </table> -->
-
           </div>
         </div>
       </div>
@@ -912,7 +921,7 @@
           boltWidth: 54,
           repeat: null,
           repeatSurcharge: null,
-          priceCode: 5,
+          priceCode: 65,
           fabricPrice: null,
           pricePoint: null,
           panelOrPair: "DRAPERYPANEL",
