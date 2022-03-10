@@ -1,3 +1,5 @@
+// calculate pleat surcharges
+
 import { calculateD2 } from './calculateD2.js';
 import { calculateD3 } from './calculateD3.js';
 import { calculateD4 } from './calculateD4.js';
@@ -63,9 +65,6 @@ export function calculatePleat(pleatType,COM,totalWidths,pricePoint)
     else if (pleatType == 'inverted') {
         return calculateD3(totalWidths, COM);
     }
-    
-    
-    
     
     else {
         console.log('- invalid pleatType');

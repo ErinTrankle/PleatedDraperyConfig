@@ -302,7 +302,7 @@
           <div class="section">
             <h1>Pleat Style</h1>
             <table>
-              <tr>
+              <!-- <tr>
                 <td>Pleat Type</td>
                 <td>
                   <select name="" id="" v-model="pleatType" @change="update()">
@@ -326,6 +326,25 @@
                     </option>
                     <option value="box">Box Pleat</option>
                     <option value="inverted">Inverted Pleated</option>
+                  </select>
+                </td>
+              </tr> -->
+              <tr>
+                <td>
+                  <select name="" id="" v-model="pleatType" @change="update()">
+                    <option value="1PN">1 Prong Pinch Pleat</option>
+                    <option value="2PB">2 Prong Pinch Pleat</option>
+                    <option value="3PB">3 Prong Pinch Pleat</option>
+                    <option value="2PT">2 Prong Tacked-at-Top</option>
+                    <option value="3PT">3 Prong Tacked-at-Top</option>
+                    <option value="REV">Reverse</option>
+                    <option value="GOB">Soft Goblet Pleat</option>
+                    <option value="CAR">Cartridge</option>
+                    <option value="C1P">Casual 1 Prong</option>
+                    <option value="SSP">Single Skip Pleat</option>
+                    <option value="CSP">Cluster Skip Pleat</option>
+                    <option value="BXP">Box Pleat</option>
+                    <option value="INV">Inverted Pleat</option>
                   </select>
                 </td>
               </tr>
