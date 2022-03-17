@@ -10,61 +10,62 @@ export function calculatePleat(pleatType,COM,totalWidths,pricePoint)
 {
     console.log('calculatePleat() start');
     
-    if (pleatType == '1prong') {
+    if (pleatType == '1PN') {
         return calculateD2(totalWidths, COM);
     }
-    else if (pleatType == '2prong'){
+    else if (pleatType == '2PB'){
         return calculateD2(totalWidths, COM);
     }
-    else if (pleatType == '3prong'){
+    else if (pleatType == '3PB'){
         return 0;
     }   
-    else if (pleatType == '2prongtacked') {
+    else if (pleatType == '2PT') {
         return calculateD2(totalWidths, COM);
     }
-    else if (pleatType == '3prongtacked') {
+    else if (pleatType == '3PT') {
         return 0;
     }
-    else if (pleatType == 'reverse') {
+    else if (pleatType == 'REV') {
         return 0;
     }
-    else if (pleatType == 'softgoblet') {
+    else if (pleatType == 'GOB') {
         return calculateD2(totalWidths,COM);
     }
-    else if (pleatType == 'cartridge') {
+    else if (pleatType == 'CAR') {
         return calculateD2(totalWidths, COM);
     }
-    else if (pleatType == 'casual1prong') {
+    else if (pleatType == 'C1P') {
         return calculateD3(totalWidths, COM);
     }
-    else if (pleatType == 'singleskip') {
+    else if (pleatType == 'SSP') {
         return calculateD2(totalWidths, COM);
     }
-    else if (pleatType == 'clusterskip') {
+    else if (pleatType == 'CSP') {
         return calculateD3(totalWidths, COM);
     }
-    else if (pleatType == 'sewonCOM') {
-        return calculateD2(totalWidths, COM);
-    }
-    else if (pleatType == 'scalloped') {
-        return calculateD6(totalWidths, COM,pricePoint);
-    }
-    else if (pleatType == 'archtop') {
-        return calculateD4(totalWidths, COM);
-    }
-    else if (pleatType == 'graduated') {
-        return calculateD5(totalWidths, COM);
-    }
-    else if (pleatType == 'multigraduated') {
-        return calculateD6(totalWidths, COM,pricePoint);
-    }
-    else if (pleatType == 'box') {
+
+    else if (pleatType == 'BXP') {
         return calculateD3(totalWidths, COM);
     }
     
-    else if (pleatType == 'inverted') {
+    else if (pleatType == 'INV') {
         return calculateD3(totalWidths, COM);
     }
+    // else if (pleatType == 'sewonCOM') {
+    //     return calculateD2(totalWidths, COM);
+    // }
+    // else if (pleatType == 'scalloped') {
+    //     return calculateD6(totalWidths, COM,pricePoint);
+    // }
+    // else if (pleatType == 'archtop') {
+    //     return calculateD4(totalWidths, COM);
+    // }
+    // else if (pleatType == 'graduated') {
+    //     return calculateD5(totalWidths, COM);
+    // }
+    // else if (pleatType == 'multigraduated') {
+    //     return calculateD6(totalWidths, COM,pricePoint);
+    // }
     
     else {
         console.log('- invalid pleatType');

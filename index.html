@@ -152,8 +152,11 @@
                 <td>Pattern</td>
                 <td>
                   <select name="" id="" v-model="pattern">
-                    <option value="">Select RM COCO Pattern</option>
+                    <option value="">Contessa</option>
                   </select>
+                </td>
+                <td class="note">
+                  Select from all RM COCO patterns
                 </td>
               </tr>
 
@@ -161,24 +164,15 @@
                 <td>Color</td>
                 <td>
                   <select name="" id="" v-model="color">
-                    <option value="">Select Colorway</option>
+                    <option value="">Fire</option>
                   </select>
+                </td>
+                <td class="note">
+                  Populate based on selected pattern
                 </td>
               </tr>
               <tr>
                 <td>Width (in)</td>
-                <!-- <td>
-                  <select
-                    name="boltWidth"
-                    id=""
-                    v-model.number="boltWidth"
-                    @change="update()"
-                  >
-                    <option value="48">48</option>
-                    <option value="54">54</option>
-                    <option value="60">60</option>
-                  </select>
-                </td> -->
                 <td>
                   <input
                     name="boltWidth"
@@ -246,16 +240,13 @@
               <tr>
                 <td>Width (in)</td>
                 <td>
-                  <select
+                  <input
                     name="boltWidth"
                     id=""
                     v-model.number="boltWidth"
                     @change="update()"
-                  >
-                    <option value="48">48</option>
-                    <option value="54">54</option>
-                    <option value="60">60</option>
-                  </select>
+                    type="number"
+                  />
                 </td>
               </tr>
               <tr>
@@ -330,6 +321,7 @@
                 </td>
               </tr> -->
               <tr>
+                <td>Style</td>
                 <td>
                   <select name="" id="" v-model="pleatType" @change="update()">
                     <option value="1PN">1 Prong Pinch Pleat</option>
@@ -944,10 +936,10 @@
           color: null,
           source: null,
           description: null,
-          boltWidth: 54,
+          boltWidth: null,
           repeat: null,
           repeatSurcharge: null,
-          priceCode: 65,
+          priceCode: null,
           fabricPrice: null,
           pricePoint: null,
           panelOrPair: "DRAPERYPANEL",
