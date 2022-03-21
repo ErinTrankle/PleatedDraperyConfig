@@ -1,7 +1,7 @@
 // this function calculates the total number of widths
 
 export function calculateWidths(
-      boltWidth,
+      fabricWidth,
       fullness,
       finishedWidth,
       panelOrPair
@@ -9,17 +9,17 @@ export function calculateWidths(
       console.log('calculateWidths() start');
       console.log(arguments);
 
-      const x = (finishedWidth * fullness) / boltWidth;
+      const x = (finishedWidth * fullness) / fabricWidth;
       const y = Math.ceil(x);
       const z = y - x;
 
-      if (panelOrPair == 'DRAPERYPANEL') {
+      if (panelOrPair == 'Panel') {
             if (z > 0.9) {
                   return Math.floor(x);
             } else {
                   return Math.ceil(x);
             }
-      } else if (panelOrPair == 'DRAPERYPAIR') {
+      } else if (panelOrPair == 'Pair') {
             if (z > 0.9) {
                   return Math.floor(x);
             } else {
@@ -27,5 +27,6 @@ export function calculateWidths(
             }
       } else {
             console.log('- please specify panel or pair');
+            return 0;
       }
 }

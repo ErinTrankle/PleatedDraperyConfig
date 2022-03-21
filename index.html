@@ -117,24 +117,32 @@
                 <td>{{ pleatType }}</td>
               </tr>
               <tr>
-                <td class="bold">Finished Width</td>
+                <td class="bold">Pin Setting</td>
+                <td>{{ pinSetting }}</td>
+              </tr>
+              <tr>
+                <td class="bold">Finished Width (in.)</td>
                 <td>{{ finishedWidth }}</td>
               </tr>
               <tr>
-                <td class="bold">Finished Length</td>
+                <td class="bold">Finished Length (in.)</td>
                 <td>{{ finishedLength }}</td>
               </tr>
               <tr>
                 <td class="bold">Lining</td>
-                <td>{{ lining }}</td>
+                <td>{{ liningType }} {{ liningColor }}</td>
+              </tr>
+              <tr>
+                <td class="bold">Interlining</td>
+                <td>{{ interliningColor }}</td>
               </tr>
               <tr>
                 <td class="bold">Horizontal Trimming</td>
-                <td>{{ trimming.horizontal.included }}</td>
+                <td>{{ trimming.horizontal.pattern }} {{ trimming.horizontal.color }}</td>
               </tr>
               <tr>
                 <td class="bold">Vertical Trimming</td>
-                <td>{{ trimming.vertical.included }}</td>
+                <td>{{ trimming.vertical.pattern }} {{ trimming.vertical.color }}</td>
               </tr>
               <tr style="height:50px;"></tr>
               <tr>
@@ -211,9 +219,9 @@
                 <td>Fabric Width (in)</td>
                 <td>
                   <input
-                    name="boltWidth"
+                    name="fabricWidth"
                     id=""
-                    v-model.number="boltWidth"
+                    v-model.number="fabricWidth"
                     @change="update()"
                     type="number"
                   />
@@ -277,9 +285,9 @@
                 <td>Fabric Width (in)</td>
                 <td>
                   <input
-                    name="boltWidth"
+                    name="fabricWidth"
                     id=""
-                    v-model.number="boltWidth"
+                    v-model.number="fabricWidth"
                     @change="update()"
                     type="number"
                   />
@@ -315,8 +323,8 @@
                     v-model.number="panelOrPair"
                     @change="update()"
                   >
-                    <option value="DRAPERYPANEL">Panel</option>
-                    <option value="DRAPERYPAIR">Pair</option>
+                    <option value="Panel">Panel</option>
+                    <option value="Pair">Pair</option>
                   </select>
                 </td>
               </tr>
@@ -329,33 +337,7 @@
           <div class="section">
             <h1>Pleat Style</h1>
             <table>
-              <!-- <tr>
-                <td>Pleat Type</td>
-                <td>
-                  <select name="" id="" v-model="pleatType" @change="update()">
-                    <option value="1prong">1 Prong Pinch Pleat</option>
-                    <option value="2prong">2 Prong Pinch Pleat</option>
-                    <option value="3prong">3 Prong Pinch Pleat</option>
-                    <option value="2prongtacked">2 Prong Tacked at Top</option>
-                    <option value="3prongtacked">3 Prong Tacked at Top</option>
-                    <option value="reverse">Reverse</option>
-                    <option value="softgoblet">Soft Goblet Pleat</option>
-                    <option value="cartridge">Cartridge</option>
-                    <option value="casual1prong">Casual 1 Prong</option>
-                    <option value="singleskip">Single Skip Pleat</option>
-                    <option value="clusterskip">Cluster Skip Pleat</option>
-                    <option value="sewonCOM">Sew on C.O.M. Ring Top</option>
-                    <option value="graduated">
-                      Pinch Pleated Graduated Valance
-                    </option>
-                    <option value="multigraduated">
-                      Pinch Pleated Multiple Graduated Valance
-                    </option>
-                    <option value="box">Box Pleat</option>
-                    <option value="inverted">Inverted Pleated</option>
-                  </select>
-                </td>
-              </tr> -->
+
               <tr>
                 <td>Style</td>
                 <td>
@@ -392,7 +374,7 @@
                       Reglar Wall Mount Traverse Rods (1.75")
                     </option>
                     <option value="0">Top of Pin to Top of Drape</option>
-                    <option value="noPins">No Pins</option>
+                    <option value="No Pins">No Pins</option>
                   </select>
                 </td>
               </tr>
@@ -538,19 +520,11 @@
                 </td>
               </tr>
               <tr>
-                <td>Cut Length (in)</td>
-                <td class="bold">{{ this.cutLength }}</td>
-              </tr>
-              <tr>
-                <td>Extra for Repeat (in)</td>
-                <td class="bold">{{ this.fabricNeededForRepeat }}</td>
-              </tr>
-              <tr>
                 <td>Total Length (in)</td>
                 <td class="bold">{{ this.totalLength }}</td>
               </tr>
-              <tr>
-                <td>Yardage Required</td>
+              <tr v-show="COM">
+                <td>COM Yardage Required</td>
 
                 <td>
                   <span class="bold">{{ this.COMyardage }}</span>
@@ -580,12 +554,13 @@
                 <td>Type of Lining</td>
                 <td>
                   <select name="" id="" v-model="liningType" @change="update()">
-                    <option value="RoyalSateen">Royal Sateen</option>
-                    <option value="COCOWeatherGuard">COCO Weather Guard</option>
-                    <option value="sussex">Sussex</option>
-                    <option value="COCOTherafoam">COCO Therafoam</option>
-                    <option value="RMSheen">R & M Sheen</option>
-                    <option value="blackout">Blackout</option>
+                    
+                    <option value="Weather Guard">Weather Guard</option>
+                    <option value="RM Designer Royal Satin">RM Designer Royal Satin</option>
+                    <option value="RM Designer Thermafoam">RM Designer Thermafoam</option>
+                    <option value="Everyday">Everyday</option>
+                    <option value="RM Designer Super Sateen">RM Designer Super Sateen</option>
+                    <option value="Blackout">Blackout</option>
                     <!-- <option value="">Other (See Below)</option> -->
                   </select>
                 </td>
@@ -594,13 +569,13 @@
                 <td>Lining Color</td>
                 <td>
                   <select name="" id="" v-model="liningColor">
-                    <option value="white">White</option>
-                    <option value="ivory">Ivory</option>
+                    <option value="White">White</option>
+                    <option value="Ivory">Ivory</option>
                   </select>
                 </td>
               </tr>
             </table>
-            <table>
+            <table v-show="lining">
               <tr>
                 <td>Interlining</td>
                 <td>
@@ -619,8 +594,8 @@
                 <td>Interlining Color</td>
                 <td>
                   <select name="" v-model="interliningColor" id="">
-                    <option value="white">White</option>
-                    <option value="ivory">Ivory</option>
+                    <option value="White">White</option>
+                    <option value="Ivory">Ivory</option>
                   </select>
                 </td>
               </tr>
@@ -678,7 +653,7 @@
               <tr v-show="!trimming.horizontal.COM">
                 <td>Pattern</td>
                 <td>
-                  <select name="" id="" v-model="trimming.horizontal.pattern">
+                  <select name="" id="" @change="update()" v-model="trimming.horizontal.pattern">
                     <option value=""></option>
                   </select>
                 </td>
@@ -687,7 +662,7 @@
               <tr v-show="!trimming.horizontal.COM">
                 <td>Color</td>
                 <td>
-                  <select name="" id="" v-model="trimming.horizontal.color">
+                  <select name="" id="" @change="update()" v-model="trimming.horizontal.color">
                     <option value=""></option>
                   </select>
                 </td>
@@ -711,6 +686,7 @@
                     name=""
                     id=""
                     v-model="trimming.horizontal.pattern"
+                    @change="update" 
                   />
                 </td>
               </tr>
@@ -722,6 +698,7 @@
                     name=""
                     id=""
                     v-model="trimming.horizontal.color"
+                    @change="update" 
                   />
                 </td>
               </tr>
@@ -903,39 +880,38 @@
           color: null,
           source: null,
           description: null,
-          boltWidth: null,
-          repeat: null,
-          repeatSurcharge: null,
-          priceCode: null,
-          fabricPrice: null,
-          pricePoint: null,
-          panelOrPair: "DRAPERYPANEL",
+          fabricWidth: 54,
+          repeat: 0,
+          repeatSurcharge: 0,
+          priceCode: 5,
+          fabricPrice: 0,
+          pricePoint: 0,
+          panelOrPair: "Pair",
           quantity: 1,
-          rodWidth: 0,
+          rodWidth: 50,
           leftReturn: 0,
           rightReturn: 0,
           overlap: 0,
           COM: false,
-          finishedWidth: null,
+          finishedWidth: 0,
           fullness: 2,
           fullnessOptions: [1.5, 2, 2.25, 2.5, 3],
           fullnessMessage: "",
-          totalWidths: null,
-          finishedLength: 0,
+          totalWidths: 0,
+          finishedLength: 48,
           cutLength: 0,
-          shirr: null,
           headingSize: null,
           rodPocketSize: null,
           lining: false,
-          liningType: "RoyalSateen",
+          liningType: "",
           liningColor: null,
           interlining: false,
           interliningColor: null,
           interliningCost: 0,
           blackout: false,
           blackoutCost: 0,
-          pinSetting: "regular",
-          COMyardage: null,
+          pinSetting: "",
+          COMyardage: 0,
           fabricNeededForRepeat: 0,
           baseCost: 0,
           totalLength: 0,
@@ -949,10 +925,10 @@
               pattern: null,
               price: null,
               source: null,
-              labor: null,
-              yardageRequired: null,
-              cost: null,
-              total: null,
+              labor: 0,
+              yardageRequired: 0,
+              cost: 0,
+              total: 0,
             },
             vertical: {
               included: false,
@@ -960,13 +936,13 @@
               pattern: null,
               price: null,
               source: null,
-              labor: null,
-              yardageRequired: null,
-              cost: null,
-              total: null,
+              labor: 0,
+              yardageRequired: 0,
+              cost: 0,
+              total: 0,
             },
             total: {
-              cost: null,
+              cost: 0,
             },
           },
           unitCost: 0,
@@ -974,7 +950,7 @@
         methods: {
           masterFunction,
           update() {
-            //check pleat style selection and change fullness options
+            // UI resets
             if (this.pleatType == "1prong") {
               this.fullnessOptions = [1.5, 2];
               this.fullnessMessage =
@@ -994,6 +970,21 @@
               this.fullnessOptions = [1.5, 2, 2.25, 2.5, 3];
               this.pleatMessage = "";
               this.fullnessMessage = "";
+            }
+            if (this.lining == false) {
+              this.liningType = "";
+              this.liningColor = "";
+            }
+            if (this.interlining == false) {
+              this.interliningColor = "";
+            }
+            if (this.trimming.horizontal.included == false) {
+              this.trimming.horizontal.pattern = "";
+              this.trimming.horizontal.color = "";
+            }
+            if (this.trimming.vertical.included == false) {
+              this.trimming.vertical.pattern = "";
+              this.trimming.vertical.color = "";
             }
 
             //send the entire object to masterFunction

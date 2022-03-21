@@ -4,7 +4,7 @@ export function calculateD7(totalWidths, interliningOrBlackout, COM) {
       console.log('calculateD7() start');
       console.log('- ',totalWidths, interliningOrBlackout, COM);
 
-      if (interliningOrBlackout == true || interliningOrBlackout == 'blackout') {
+      if (interliningOrBlackout == true || interliningOrBlackout == 'Blackout') {
             if (COM == true) {
                   switch (totalWidths) {
                         case 1:

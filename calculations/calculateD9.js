@@ -5,9 +5,9 @@ export function calculateD9(finishedLength, COM, panelOrPair) {
       console.log('- ',finishedLength, COM, panelOrPair);
       var x;
 
-      if (panelOrPair == 'DRAPERYPANEL') {
+      if (panelOrPair == 'Panel') {
             x = 1;
-      } else if (panelOrPair == 'DRAPERYPAIR') {
+      } else if (panelOrPair == 'Pair') {
             x = 2;
       }
 

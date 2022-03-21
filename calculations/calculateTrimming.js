@@ -6,7 +6,7 @@ export function calculcateTrimming(
       finishedLength,
       panelOrPair,
       totalWidths,
-      boltWidth
+      fabricWidth
 ) {
       console.log('calculateTrimming() start');
 
@@ -20,7 +20,7 @@ export function calculcateTrimming(
             trimmingResults.vertical.yardageRequired =
                   Math.ceil(((finishedLength + 6) / 36) * 100) / 100;
 
-            if (panelOrPair == 'pair') {
+            if (panelOrPair == 'Pair') {
                   trimmingResults.vertical.yardageRequired =
                         trimmingResults.vertical.yardageRequired * 2;
             }
@@ -52,7 +52,7 @@ export function calculcateTrimming(
 
       if (trimmingData.horizontal.included == true) {
             trimmingResults.horizontal.yardageRequired =
-                  Math.ceil(((totalWidths * boltWidth) / 36) * 100) / 100;
+                  Math.ceil(((totalWidths * fabricWidth) / 36) * 100) / 100;
 
             trimmingResults.horizontal.labor = calculateD5(
                   totalWidths,

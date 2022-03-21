@@ -31,7 +31,7 @@ export function masterFunction(data) {
             data.rodWidth + data.leftReturn + data.rightReturn + data.overlap;
 
       result.totalWidths = calculateWidths(
-            data.boltWidth,
+            data.fabricWidth,
             data.fullness,
             result.finishedWidth,
             data.panelOrPair
@@ -77,7 +77,7 @@ export function masterFunction(data) {
             data.finishedLength,
             data.panelOrPair,
             result.totalWidths,
-            data.boltWidth
+            data.fabricWidth
       );
 
       result.unitCost = result.D1 + result.trimming.total.cost + result.pleatCost + result.interliningCost + result.blackoutCost;
