@@ -7,6 +7,7 @@ export function calculateWidths(
       panelOrPair
 ) {
       console.log('calculateWidths() start');
+      console.log(arguments);
 
       const x = (finishedWidth * fullness) / boltWidth;
       const y = Math.ceil(x);

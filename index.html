@@ -101,8 +101,48 @@
             <h1>Summary</h1>
             <table>
               <tr>
+                <td class="bold">Pattern</td>
+                <td>{{ pattern }}</td>
+              </tr>
+              <tr>
+                <td class="bold">Color</td>
+                <td>{{ color }}</td>
+              </tr>
+              <tr>
+                <td class="bold">Panel or Pair</td>
+                <td>{{ panelOrPair }}</td>
+              </tr>
+              <tr>
+                <td class="bold">Pleat Style</td>
+                <td>{{ pleatType }}</td>
+              </tr>
+              <tr>
+                <td class="bold">Finished Width</td>
+                <td>{{ finishedWidth }}</td>
+              </tr>
+              <tr>
+                <td class="bold">Finished Length</td>
+                <td>{{ finishedLength }}</td>
+              </tr>
+              <tr>
+                <td class="bold">Lining</td>
+                <td>{{ lining }}</td>
+              </tr>
+              <tr>
+                <td class="bold">Horizontal Trimming</td>
+                <td>{{ trimming.horizontal.included }}</td>
+              </tr>
+              <tr>
+                <td class="bold">Vertical Trimming</td>
+                <td>{{ trimming.vertical.included }}</td>
+              </tr>
+              <tr style="height:50px;"></tr>
+              <tr>
                 <td class="big bold">Unit price</td>
                 <td class="big bold green">${{ unitCost }}</td>
+              </tr>
+
+
               </tr>
               <tr>
                 <td class="big bold">Quantity</td>
@@ -152,27 +192,23 @@
                 <td>Pattern</td>
                 <td>
                   <select name="" id="" v-model="pattern">
-                    <option value="">Contessa</option>
+                    <option value="Contessa">Contessa</option>
                   </select>
                 </td>
-                <td class="note">
-                  Select from all RM COCO patterns
-                </td>
+                <td class="note">Select from all RM COCO patterns</td>
               </tr>
 
               <tr>
                 <td>Color</td>
                 <td>
                   <select name="" id="" v-model="color">
-                    <option value="">Fire</option>
+                    <option value="Firestone">Firestone</option>
                   </select>
                 </td>
-                <td class="note">
-                  Populate based on selected pattern
-                </td>
+                <td class="note">Populate based on selected pattern</td>
               </tr>
               <tr>
-                <td>Width (in)</td>
+                <td>Fabric Width (in)</td>
                 <td>
                   <input
                     name="boltWidth"
@@ -189,7 +225,7 @@
                 </td>
               </tr>
               <tr>
-                <td>Repeat</td>
+                <td>Fabric Repeat</td>
                 <td>
                   <input
                     type="number"
@@ -238,7 +274,7 @@
                 <td><input type="text" v-model="source" /></td>
               </tr>
               <tr>
-                <td>Width (in)</td>
+                <td>Fabric Width (in)</td>
                 <td>
                   <input
                     name="boltWidth"
@@ -250,7 +286,7 @@
                 </td>
               </tr>
               <tr>
-                <td>Repeat</td>
+                <td>Fabric Repeat</td>
                 <td>
                   <input
                     type="number"
@@ -344,13 +380,17 @@
                 <td>Pin Setting</td>
                 <td>
                   <select name="" id="" v-model="pinSetting">
-                    <option value="0.25">Wood Pole or Cafe Rings (0.25")</option>
+                    <option value="0.25">
+                      Wood Pole or Cafe Rings (0.25")
+                    </option>
                     <option value="0.5">Decorative Rods (0.5")</option>
                     <option value="0.75">Brass Rods (0.75")</option>
                     <option value="1">Valances and Side Panels (1")</option>
                     <option value="1.25">All Under Draperies (1.5")</option>
                     <option value="1.5">Ceiling Mount (1.5")</option>
-                    <option value="1.75">Reglar Wall Mount Traverse Rods (1.75")</option>
+                    <option value="1.75">
+                      Reglar Wall Mount Traverse Rods (1.75")
+                    </option>
                     <option value="0">Top of Pin to Top of Drape</option>
                     <option value="noPins">No Pins</option>
                   </select>
@@ -391,7 +431,6 @@
                   />
                 </td>
               </tr> -->
-
             </table>
           </div>
         </div>
@@ -849,78 +888,6 @@
                 </td>
               </tr>
             </table>
-
-            <!-- <table>
-              <tr>
-                <td>Vertical Trimming</td>
-                <td>
-                  <select
-                    name=""
-                    id=""
-                    v-model="trimming.vertical.included"
-                    @change="update()"
-                  >
-                    <option :value="true">Yes</option>
-                    <option :value="false">No</option>
-                  </select>
-                </td>
-              </tr>
-            </table>
-
-
-            <table v-show="trimming.vertical.included">
-              <tr>
-                <td>COM</td>
-                <td>
-                  <select
-                    name=""
-                    id=""
-                    v-model="trimming.vertical.COM"
-                    @change="update()"
-                  >
-                    <option :value="true">Yes</option>
-                    <option :value="false">No</option>
-                  </select>
-                </td>
-              </tr>
-
-              <tr>
-                <td>Pattern / Color</td>
-                <td>
-                  <input type="text" v-model="trimming.vertical.pattern" />
-                </td>
-              </tr>
-              <tr>
-                <td>Price / yd</td>
-                <td>
-                  <input
-                    type="number"
-                    v-model="trimming.vertical.price"
-                    @change="update"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Yardage required</td>
-                <td>
-                  <span class="bold"
-                    >{{ trimming.vertical.yardageRequired }}</span
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>Trim Cost</td>
-                <td>
-                  <span class="bold">${{ trimming.vertical.cost }}</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Labor (table D9)</td>
-                <td>
-                  <span class="bold">${{ trimming.vertical.labor }}</span>
-                </td>
-              </tr>
-            </table> -->
           </div>
         </div>
       </div>
