@@ -114,18 +114,18 @@
               </tr>
               <tr>
                 <td class="bold">Pleat Style</td>
-                <td>{{ selectedPleat }}</td>
+                <td>{{ displayPleat }}</td>
               </tr>
               <tr>
                 <td class="bold">Pin Setting</td>
-                <td>{{ selectedPin }}</td>
+                <td>{{ displayPin }}</td>
               </tr>
               <tr>
-                <td class="bold">Finished Width (in.)</td>
+                <td class="bold">Finished Width (in)</td>
                 <td>{{ finishedWidth }}</td>
               </tr>
               <tr>
-                <td class="bold">Finished Length (in.)</td>
+                <td class="bold">Finished Length (in)</td>
                 <td>{{ finishedLength }}</td>
               </tr>
               <tr>
@@ -343,7 +343,7 @@
               <tr>
                 <td>Style</td>
                 <td>
-                  <select v-model="selectedPleat">
+                  <select v-model="selectedPleat" @change="update()">
                     <option
                       v-for="pleats in pleatType"
                       :value="pleats.id"
@@ -357,7 +357,7 @@
               <tr>
                 <td>Pin Setting</td>
                 <td>
-                  <select v-model="selectedPin">
+                  <select v-model="selectedPin" @change="update()">
                     <option
                       v-for="pin in pinSetting"
                       :value="pin.id"
@@ -903,6 +903,7 @@
             { style: "Inverted Pleat", id: "INV" },
           ],
           selectedPleat: "",
+          displayPleat:"",
           pleatMessage: null,
           pleatCost: 0,
           pinSetting: [
@@ -917,6 +918,7 @@
             { style: "No Pins", id: "No Pins" },
           ],
           selectedPin: "",
+          displayPin: "",
           trimming: {
             horizontal: {
               included: false,
@@ -985,6 +987,14 @@
               this.trimming.vertical.pattern = "";
               this.trimming.vertical.color = "";
             }
+            if (this.selectedPleat != ""){
+              this.displayPleat = this.pleatType.find(obj2 => obj2.id == this.selectedPleat).style;
+            }
+            if (this.selectedPin != ""){
+              this.displayPin = this.pinSetting.find(obj => obj.id == this.selectedPin).style;
+            }
+            
+
 
             //send the entire object to masterFunction
             var result = masterFunction(this.$data);
