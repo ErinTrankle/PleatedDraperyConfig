@@ -66,11 +66,11 @@ export function masterFunction(data) {
                   data.COM
             );
       
-      result.pleatCost = calculatePleat(data.pleatType,data.COM,result.totalWidths,data.pricePoint);
+      result.pleatCost = calculatePleat(data.selectedPleat,data.COM,result.totalWidths,data.pricePoint);
 
       result.interliningCost = calculateD7(result.totalWidths, data.interlining, data.COM);
 
-      result.blackoutCost = calculateD7(result.totalWidths, data.liningType, data.COM);
+      result.blackoutCost = calculateD7(result.totalWidths, data.selectedLining, data.COM);
 
       result.trimming = calculcateTrimming(
             data.trimming,

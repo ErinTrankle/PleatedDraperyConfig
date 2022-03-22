@@ -114,11 +114,11 @@
               </tr>
               <tr>
                 <td class="bold">Pleat Style</td>
-                <td>{{ pleatType }}</td>
+                <td>{{ selectedPleat }}</td>
               </tr>
               <tr>
                 <td class="bold">Pin Setting</td>
-                <td>{{ pinSetting }}</td>
+                <td>{{ selectedPin }}</td>
               </tr>
               <tr>
                 <td class="bold">Finished Width (in.)</td>
@@ -130,7 +130,7 @@
               </tr>
               <tr>
                 <td class="bold">Lining</td>
-                <td>{{ liningType }} {{ liningColor }}</td>
+                <td>{{ selectedLining }} {{ liningColor }}</td>
               </tr>
               <tr>
                 <td class="bold">Interlining</td>
@@ -138,20 +138,23 @@
               </tr>
               <tr>
                 <td class="bold">Horizontal Trimming</td>
-                <td>{{ trimming.horizontal.pattern }} {{ trimming.horizontal.color }}</td>
+                <td>
+                  {{ trimming.horizontal.pattern }} {{ trimming.horizontal.color
+                  }}
+                </td>
               </tr>
               <tr>
                 <td class="bold">Vertical Trimming</td>
-                <td>{{ trimming.vertical.pattern }} {{ trimming.vertical.color }}</td>
+                <td>
+                  {{ trimming.vertical.pattern }} {{ trimming.vertical.color }}
+                </td>
               </tr>
-              <tr style="height:50px;"></tr>
+              <tr style="height: 50px"></tr>
               <tr>
                 <td class="big bold">Unit price</td>
                 <td class="big bold green">${{ unitCost }}</td>
               </tr>
 
-
-              </tr>
               <tr>
                 <td class="big bold">Quantity</td>
                 <td class="big bold">
@@ -337,82 +340,34 @@
           <div class="section">
             <h1>Pleat Style</h1>
             <table>
-
               <tr>
                 <td>Style</td>
                 <td>
-                  <select name="" id="" v-model="pleatType" @change="update()">
-                    <option value="1PN">1 Prong Pinch Pleat</option>
-                    <option value="2PB">2 Prong Pinch Pleat</option>
-                    <option value="3PB">3 Prong Pinch Pleat</option>
-                    <option value="2PT">2 Prong Tacked-at-Top</option>
-                    <option value="3PT">3 Prong Tacked-at-Top</option>
-                    <option value="REV">Reverse</option>
-                    <option value="GOB">Soft Goblet Pleat</option>
-                    <option value="CAR">Cartridge</option>
-                    <option value="C1P">Casual 1 Prong</option>
-                    <option value="SSP">Single Skip Pleat</option>
-                    <option value="CSP">Cluster Skip Pleat</option>
-                    <option value="BXP">Box Pleat</option>
-                    <option value="INV">Inverted Pleat</option>
+                  <select v-model="selectedPleat">
+                    <option
+                      v-for="pleats in pleatType"
+                      :value="pleats.id"
+                      :key="pleats.id"
+                    >
+                      {{ pleats.style }}
+                    </option>
                   </select>
                 </td>
               </tr>
               <tr>
                 <td>Pin Setting</td>
                 <td>
-                  <select name="" id="" v-model="pinSetting">
-                    <option value="0.25">
-                      Wood Pole or Cafe Rings (0.25")
+                  <select v-model="selectedPin">
+                    <option
+                      v-for="pin in pinSetting"
+                      :value="pin.id"
+                      :key="pin.id"
+                    >
+                      {{ pin.style }}
                     </option>
-                    <option value="0.5">Decorative Rods (0.5")</option>
-                    <option value="0.75">Brass Rods (0.75")</option>
-                    <option value="1">Valances and Side Panels (1")</option>
-                    <option value="1.25">All Under Draperies (1.5")</option>
-                    <option value="1.5">Ceiling Mount (1.5")</option>
-                    <option value="1.75">
-                      Reglar Wall Mount Traverse Rods (1.75")
-                    </option>
-                    <option value="0">Top of Pin to Top of Drape</option>
-                    <option value="No Pins">No Pins</option>
                   </select>
                 </td>
               </tr>
-              <!-- <tr>
-                <td>Shirr Top Bottom</td>
-                <td>
-                  <select name="" id="" v-model="shirr">
-                    <option value="none">None</option>
-                    <option value="top">Top</option>
-                    <option value="bottom">Bottom</option>
-                    <option value="both">Top & Bottom</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Heading Size</td>
-                <td>
-                  <input
-                    type="number"
-                    name=""
-                    id=""
-                    v-model="headingSize"
-                    min="0"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>Rod Pocket Size</td>
-                <td>
-                  <input
-                    type="number"
-                    name=""
-                    id=""
-                    v-model="rodPocketSize"
-                    min="0"
-                  />
-                </td>
-              </tr> -->
             </table>
           </div>
         </div>
@@ -553,15 +508,14 @@
               <tr>
                 <td>Type of Lining</td>
                 <td>
-                  <select name="" id="" v-model="liningType" @change="update()">
-                    
-                    <option value="Weather Guard">Weather Guard</option>
-                    <option value="RM Designer Royal Satin">RM Designer Royal Satin</option>
-                    <option value="RM Designer Thermafoam">RM Designer Thermafoam</option>
-                    <option value="Everyday">Everyday</option>
-                    <option value="RM Designer Super Sateen">RM Designer Super Sateen</option>
-                    <option value="Blackout">Blackout</option>
-                    <!-- <option value="">Other (See Below)</option> -->
+                  <select v-model="selectedLining" @change="update()">
+                    <option
+                      v-for="item in liningType"
+                      :value="item.type"
+                      :key="item.type"
+                    >
+                      {{ item.type }}
+                    </option>
                   </select>
                 </td>
               </tr>
@@ -653,7 +607,12 @@
               <tr v-show="!trimming.horizontal.COM">
                 <td>Pattern</td>
                 <td>
-                  <select name="" id="" @change="update()" v-model="trimming.horizontal.pattern">
+                  <select
+                    name=""
+                    id=""
+                    @change="update()"
+                    v-model="trimming.horizontal.pattern"
+                  >
                     <option value=""></option>
                   </select>
                 </td>
@@ -662,7 +621,12 @@
               <tr v-show="!trimming.horizontal.COM">
                 <td>Color</td>
                 <td>
-                  <select name="" id="" @change="update()" v-model="trimming.horizontal.color">
+                  <select
+                    name=""
+                    id=""
+                    @change="update()"
+                    v-model="trimming.horizontal.color"
+                  >
                     <option value=""></option>
                   </select>
                 </td>
@@ -686,7 +650,7 @@
                     name=""
                     id=""
                     v-model="trimming.horizontal.pattern"
-                    @change="update" 
+                    @change="update"
                   />
                 </td>
               </tr>
@@ -698,7 +662,7 @@
                     name=""
                     id=""
                     v-model="trimming.horizontal.color"
-                    @change="update" 
+                    @change="update"
                   />
                 </td>
               </tr>
@@ -903,7 +867,15 @@
           headingSize: null,
           rodPocketSize: null,
           lining: false,
-          liningType: "",
+          liningType: [
+            { type: "Weather Guard" },
+            { type: "RM Designer Royal Satin" },
+            { type: "RM Designer Thermafoam" },
+            { type: "Everyday" },
+            { type: "RM Designer Super Sateen" },
+            { type: "Blackout" },
+          ],
+          selectedLining: "",
           liningColor: null,
           interlining: false,
           interliningColor: null,
@@ -915,9 +887,36 @@
           fabricNeededForRepeat: 0,
           baseCost: 0,
           totalLength: 0,
-          pleatType: null,
+          pleatType: [
+            { style: "1 Prong Pinch Pleat", id: "1PN" },
+            { style: "2 Prong Pinch Pleat", id: "2PB" },
+            { style: "3 Prong Pinch Pleat", id: "3PB" },
+            { style: "2 Prong Tacked-at-Top", id: "2PT" },
+            { style: "3 Prong Tacked-at-Top", id: "3PT" },
+            { style: "Reverse", id: "REV" },
+            { style: "Soft Goblet Pleat", id: "GOB" },
+            { style: "Cartridge", id: "CAR" },
+            { style: "Casual 1 Prong", id: "C1P" },
+            { style: "Single Skip Pleat", id: "SSP" },
+            { style: "Cluster Skip Pleat", id: "CSP" },
+            { style: "Box Pleat", id: "BXP" },
+            { style: "Inverted Pleat", id: "INV" },
+          ],
+          selectedPleat: "",
           pleatMessage: null,
           pleatCost: 0,
+          pinSetting: [
+            { style: "Wood Pole or Cafe Rings (0.25 in)", id: "0.25" },
+            { style: "Decorative Rods (0.5 in)", id: "0.5" },
+            { style: "Brass Rods (0.75 in)", id: "0.75" },
+            { style: "Valances and Side Panels (1 in)", id: "1" },
+            { style: "All Under Draperies (1.25 in)", id: "1.25" },
+            { style: "Ceiling Mount (1.5 in)", id: "1.5" },
+            { style: "Regular Wall Mount Traverse Rods (1.75 in)", id: "1.75" },
+            { style: "Top of Pin to Top of Drape (0 in)", id: "0" },
+            { style: "No Pins", id: "No Pins" },
+          ],
+          selectedPin: "",
           trimming: {
             horizontal: {
               included: false,
@@ -951,18 +950,18 @@
           masterFunction,
           update() {
             // UI resets
-            if (this.pleatType == "1prong") {
+            if (this.selectedPleat == "1prong") {
               this.fullnessOptions = [1.5, 2];
               this.fullnessMessage =
                 "1.5 is recommended fullness for 1 Prong Pinch Pleat";
             } else if (
-              this.pleatType == "2prong" ||
-              this.pleatType == "2prongtacked"
+              this.selectedPleat == "2prong" ||
+              this.selectedPleat == "2prongtacked"
             ) {
               this.fullnessOptions = [1.5, 2, 2.25, 2.5];
               this.fullnessMessage =
                 "2.25 is recommended fullness for 2 Prong Pleats";
-            } else if (this.pleatType == "singleskip") {
+            } else if (this.selectedPleat == "singleskip") {
               this.fullnessOptions = [1.5, 2, 2.25, 2.5];
               this.fullnessMessage =
                 "2.5 is recommended fullness for Single Skip Pleat";
@@ -972,7 +971,7 @@
               this.fullnessMessage = "";
             }
             if (this.lining == false) {
-              this.liningType = "";
+              this.selectedLining = "";
               this.liningColor = "";
             }
             if (this.interlining == false) {
