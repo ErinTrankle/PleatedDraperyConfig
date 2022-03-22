@@ -68,7 +68,7 @@
         text-align: left;
         width: auto;
         padding: 4px;
-        min-width: 120px;
+        min-width: 150px;
         outline: 0px red solid;
       }
 
@@ -160,8 +160,6 @@
                 <td class="big bold">
                   <input
                     type="number"
-                    name=""
-                    id=""
                     min="1"
                     v-model.number="quantity"
                     @change="updateAll()"
@@ -186,7 +184,7 @@
               <tr>
                 <td>COM</td>
                 <td>
-                  <select name="" id="" v-model="COM" @change="update()">
+                  <select v-model="COM" @change="update()">
                     <option :value="true">Yes</option>
                     <option :value="false">No</option>
                   </select>
@@ -202,7 +200,7 @@
               <tr>
                 <td>Pattern</td>
                 <td>
-                  <select name="" id="" v-model="pattern">
+                  <select v-model="pattern">
                     <option value="Contessa">Contessa</option>
                   </select>
                 </td>
@@ -212,7 +210,7 @@
               <tr>
                 <td>Color</td>
                 <td>
-                  <select name="" id="" v-model="color">
+                  <select v-model="color">
                     <option value="Firestone">Firestone</option>
                   </select>
                 </td>
@@ -223,7 +221,6 @@
                 <td>
                   <input
                     name="fabricWidth"
-                    id=""
                     v-model.number="fabricWidth"
                     @change="update()"
                     type="number"
@@ -255,13 +252,7 @@
               <tr>
                 <td>Price Code</td>
                 <td>
-                  <input
-                    type="number"
-                    name=""
-                    id=""
-                    v-model="priceCode"
-                    @change="update()"
-                  />
+                  <input type="number" v-model="priceCode" @change="update()" />
                 </td>
                 <td class="note">
                   This field will populate dynamically based on the fabric
@@ -289,7 +280,6 @@
                 <td>
                   <input
                     name="fabricWidth"
-                    id=""
                     v-model.number="fabricWidth"
                     @change="update()"
                     type="number"
@@ -301,7 +291,6 @@
                 <td>
                   <input
                     type="number"
-                    name="repeat"
                     min="0"
                     v-model.number="repeat"
                     @change="update()"
@@ -320,12 +309,7 @@
               <tr>
                 <td>Panel or Pair</td>
                 <td>
-                  <select
-                    name=""
-                    id=""
-                    v-model.number="panelOrPair"
-                    @change="update()"
-                  >
+                  <select v-model.number="panelOrPair" @change="update()">
                     <option value="Panel">Panel</option>
                     <option value="Pair">Pair</option>
                   </select>
@@ -382,7 +366,6 @@
                 <td>
                   <input
                     type="number"
-                    name="rodWidth"
                     v-model.number="rodWidth"
                     @change="update"
                     min="0"
@@ -437,7 +420,6 @@
                 <td>
                   <select
                     name="fullness"
-                    id=""
                     v-model.number="fullness"
                     @change="update()"
                   >
@@ -497,7 +479,7 @@
               <tr>
                 <td>Lining</td>
                 <td>
-                  <select name="" id="" v-model="lining" @change="update()">
+                  <select v-model="lining" @change="update()">
                     <option :value="false">Unlined</option>
                     <option :value="true">Lined</option>
                   </select>
@@ -522,7 +504,7 @@
               <tr>
                 <td>Lining Color</td>
                 <td>
-                  <select name="" id="" v-model="liningColor">
+                  <select v-model="liningColor">
                     <option value="White">White</option>
                     <option value="Ivory">Ivory</option>
                   </select>
@@ -533,12 +515,7 @@
               <tr>
                 <td>Interlining</td>
                 <td>
-                  <select
-                    name=""
-                    id=""
-                    v-model="interlining"
-                    @change="update()"
-                  >
+                  <select v-model="interlining" @change="update()">
                     <option :value="true">Yes</option>
                     <option :value="false">No</option>
                   </select>
@@ -547,7 +524,7 @@
               <tr v-show="interlining">
                 <td>Interlining Color</td>
                 <td>
-                  <select name="" v-model="interliningColor" id="">
+                  <select v-model="interliningColor">
                     <option value="White">White</option>
                     <option value="Ivory">Ivory</option>
                   </select>
@@ -568,8 +545,6 @@
                 <td>Horizontal Trimming</td>
                 <td>
                   <select
-                    name=""
-                    id=""
                     v-model="trimming.horizontal.included"
                     @change="update()"
                   >
@@ -586,12 +561,7 @@
                 <td>COM</td>
 
                 <td>
-                  <select
-                    name=""
-                    id=""
-                    v-model="trimming.horizontal.COM"
-                    @change="update()"
-                  >
+                  <select v-model="trimming.horizontal.COM" @change="update()">
                     <option :value="true">Yes</option>
                     <option :value="false">No</option>
                   </select>
@@ -608,8 +578,6 @@
                 <td>Pattern</td>
                 <td>
                   <select
-                    name=""
-                    id=""
                     @change="update()"
                     v-model="trimming.horizontal.pattern"
                   >
@@ -622,8 +590,6 @@
                 <td>Color</td>
                 <td>
                   <select
-                    name=""
-                    id=""
                     @change="update()"
                     v-model="trimming.horizontal.color"
                   >
@@ -647,8 +613,6 @@
                 <td>
                   <input
                     type="text"
-                    name=""
-                    id=""
                     v-model="trimming.horizontal.pattern"
                     @change="update"
                   />
@@ -659,8 +623,6 @@
                 <td>
                   <input
                     type="text"
-                    name=""
-                    id=""
                     v-model="trimming.horizontal.color"
                     @change="update"
                   />
@@ -669,12 +631,7 @@
               <tr v-show="trimming.horizontal.COM">
                 <td>Source</td>
                 <td>
-                  <input
-                    type="text"
-                    name=""
-                    id=""
-                    v-model="trimming.horizontal.source"
-                  />
+                  <input type="text" v-model="trimming.horizontal.source" />
                 </td>
               </tr>
 
@@ -687,18 +644,6 @@
                   >
                 </td>
               </tr>
-              <tr>
-                <td>Trim Cost</td>
-                <td>
-                  <span class="bold">${{ trimming.horizontal.cost }}</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Labor (table D5)</td>
-                <td>
-                  <span class="bold">${{ trimming.horizontal.labor }}</span>
-                </td>
-              </tr>
             </table>
 
             <br /><br />
@@ -709,8 +654,6 @@
                 <td>Vertical Trimming</td>
                 <td>
                   <select
-                    name=""
-                    id=""
                     v-model="trimming.vertical.included"
                     @change="update()"
                   >
@@ -727,12 +670,7 @@
                 <td>COM</td>
 
                 <td>
-                  <select
-                    name=""
-                    id=""
-                    v-model="trimming.vertical.COM"
-                    @change="update()"
-                  >
+                  <select v-model="trimming.vertical.COM" @change="update()">
                     <option :value="true">Yes</option>
                     <option :value="false">No</option>
                   </select>
@@ -748,7 +686,7 @@
               <tr v-show="!trimming.vertical.COM">
                 <td>Pattern</td>
                 <td>
-                  <select name="" id="" v-model="trimming.vertical.pattern">
+                  <select v-model="trimming.vertical.pattern">
                     <option value=""></option>
                   </select>
                 </td>
@@ -757,7 +695,7 @@
               <tr v-show="!trimming.vertical.COM">
                 <td>Color</td>
                 <td>
-                  <select name="" id="" v-model="trimming.vertical.color">
+                  <select v-model="trimming.vertical.color">
                     <option value=""></option>
                   </select>
                 </td>
@@ -776,34 +714,19 @@
               <tr v-show="trimming.vertical.COM">
                 <td>Pattern</td>
                 <td>
-                  <input
-                    type="text"
-                    name=""
-                    id=""
-                    v-model="trimming.vertical.pattern"
-                  />
+                  <input type="text" v-model="trimming.vertical.pattern" />
                 </td>
               </tr>
               <tr v-show="trimming.vertical.COM">
                 <td>Color</td>
                 <td>
-                  <input
-                    type="text"
-                    name=""
-                    id=""
-                    v-model="trimming.vertical.color"
-                  />
+                  <input type="text" v-model="trimming.vertical.color" />
                 </td>
               </tr>
               <tr v-show="trimming.vertical.COM">
                 <td>Source</td>
                 <td>
-                  <input
-                    type="text"
-                    name=""
-                    id=""
-                    v-model="trimming.vertical.source"
-                  />
+                  <input type="text" v-model="trimming.vertical.source" />
                 </td>
               </tr>
 
@@ -814,18 +737,6 @@
                   <span class="bold"
                     >{{ trimming.vertical.yardageRequired }}</span
                   >
-                </td>
-              </tr>
-              <tr>
-                <td>Trim Cost</td>
-                <td>
-                  <span class="bold">${{ trimming.vertical.cost }}</span>
-                </td>
-              </tr>
-              <tr>
-                <td>Labor (table D9)</td>
-                <td>
-                  <span class="bold">${{ trimming.vertical.labor }}</span>
                 </td>
               </tr>
             </table>
@@ -903,8 +814,8 @@
             { style: "Inverted Pleat", id: "INV" },
           ],
           selectedPleat: "",
-          displayPleat:"",
-          pleatMessage: null,
+          displayPleat: "",
+          pleatMessage: "",
           pleatCost: 0,
           pinSetting: [
             { style: "Wood Pole or Cafe Rings (0.25 in)", id: "0.25" },
@@ -951,22 +862,22 @@
         methods: {
           masterFunction,
           update() {
-            // UI resets
-            if (this.selectedPleat == "1prong") {
+            // UI updates and resets
+            if (this.selectedPleat == "1PN") {
               this.fullnessOptions = [1.5, 2];
               this.fullnessMessage =
-                "1.5 is recommended fullness for 1 Prong Pinch Pleat";
+                "The recommended fullness for 1 Prong Pinch Pleat is 1.5";
             } else if (
-              this.selectedPleat == "2prong" ||
-              this.selectedPleat == "2prongtacked"
+              this.selectedPleat == "2PB" ||
+              this.selectedPleat == "2PT"
             ) {
               this.fullnessOptions = [1.5, 2, 2.25, 2.5];
               this.fullnessMessage =
-                "2.25 is recommended fullness for 2 Prong Pleats";
-            } else if (this.selectedPleat == "singleskip") {
+                "The recommended fullness for 2 Prong Pleats is 2.25";
+            } else if (this.selectedPleat == "SSP") {
               this.fullnessOptions = [1.5, 2, 2.25, 2.5];
               this.fullnessMessage =
-                "2.5 is recommended fullness for Single Skip Pleat";
+                "The recommended fullness for Single Skip Pleat is 2.5";
             } else {
               this.fullnessOptions = [1.5, 2, 2.25, 2.5, 3];
               this.pleatMessage = "";
@@ -987,14 +898,16 @@
               this.trimming.vertical.pattern = "";
               this.trimming.vertical.color = "";
             }
-            if (this.selectedPleat != ""){
-              this.displayPleat = this.pleatType.find(obj2 => obj2.id == this.selectedPleat).style;
+            if (this.selectedPleat != "") {
+              this.displayPleat = this.pleatType.find(
+                (obj2) => obj2.id == this.selectedPleat
+              ).style;
             }
-            if (this.selectedPin != ""){
-              this.displayPin = this.pinSetting.find(obj => obj.id == this.selectedPin).style;
+            if (this.selectedPin != "") {
+              this.displayPin = this.pinSetting.find(
+                (obj) => obj.id == this.selectedPin
+              ).style;
             }
-            
-
 
             //send the entire object to masterFunction
             var result = masterFunction(this.$data);
