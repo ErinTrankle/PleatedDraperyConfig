@@ -30,10 +30,13 @@ export function calculcateTrimming(
                   trimmingData.vertical.COM,
                   panelOrPair
             );
+            console.log('- vertical labor cost: ',trimmingResults.vertical.labor);
+
             trimmingResults.vertical.cost = Math.round(
                   trimmingData.vertical.price *
                         trimmingResults.vertical.yardageRequired
             );
+            console.log('- vertical trim cost: ',trimmingResults.vertical.cost);
 
             trimmingResults.vertical.total =
                   trimmingResults.vertical.cost +
@@ -58,15 +61,21 @@ export function calculcateTrimming(
                   totalWidths,
                   trimmingData.horizontal.COM
             );
+            console.log('- horizontal labor cost: ',trimmingResults.horizontal.labor);
 
             trimmingResults.horizontal.cost = Math.round(
                   trimmingData.horizontal.price *
                         trimmingResults.horizontal.yardageRequired
             );
+            console.log('- horizontal trim cost: ',trimmingResults.horizontal.cost);
 
             trimmingResults.horizontal.total =
-                  trimmingData.horizontal.cost +
+                  trimmingResults.horizontal.cost +
                   trimmingResults.horizontal.labor;
+
+            console.log('- horizontal trim total: ',trimmingResults.horizontal.total);
+
+            
       } else if (trimmingData.horizontal.included == false) {
             trimmingResults.horizontal.yardageRequired = 0;
             trimmingResults.horizontal.labor = 0;

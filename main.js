@@ -34,7 +34,7 @@ export function masterFunction(data) {
             data.fabricWidth,
             data.fullness,
             result.finishedWidth,
-            data.panelOrPair
+            
       );
 
       result.cutLength = calculateCutLength(data.finishedLength, data.lining);

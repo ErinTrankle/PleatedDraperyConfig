@@ -601,7 +601,7 @@
               <tr v-show="!trimming.horizontal.COM">
                 <td>Price / yd</td>
                 <td>
-                  <input v-model="trimming.horizontal.price" @change="update" />
+                  <input type="number" v-model="trimming.horizontal.price" @change="update" />
                 </td>
                 <td class="note">Populate based on trim selection</td>
               </tr>
@@ -704,7 +704,7 @@
               <tr v-show="!trimming.vertical.COM">
                 <td>Price / yd</td>
                 <td>
-                  <input v-model="trimming.vertical.price" @change="update" />
+                  <input type="number" v-model="trimming.vertical.price" @change="update" />
                 </td>
                 <td class="note">Populate based on trim selection</td>
               </tr>
