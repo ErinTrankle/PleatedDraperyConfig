@@ -62,7 +62,7 @@
       }
 
       table {
-        margin-right: 40px;
+
       }
       td {
         text-align: left;
@@ -84,6 +84,13 @@
       }
       .note {
         color: dodgerblue;
+      }
+      .required {
+        color: red;
+        
+      }
+      .required::after {
+        content: "*";
       }
     </style>
   </head>
@@ -149,9 +156,15 @@
                   {{ trimming.vertical.pattern }} {{ trimming.vertical.color }}
                 </td>
               </tr>
+              <tr>
+                <td class="bold">Label</td>
+                <td>
+                  {{ draperyLabel }}
+                </td>
+              </tr>
               <tr style="height: 50px"></tr>
               <tr>
-                <td class="big bold">Unit price</td>
+                <td class="big bold">Unit Price Retail</td>
                 <td class="big bold green">${{ unitCost }}</td>
               </tr>
 
@@ -167,8 +180,12 @@
                 </td>
               </tr>
               <tr>
-                <td class="bold big">Total</td>
+                <td class="bold big">Total Retail</td>
                 <td class="bold big green">${{ unitCost * quantity }}</td>
+              </tr>
+              <tr style="height: 50px"></tr>
+              <tr>
+                <td><button>Add to Cart</button> <button>Save to Projects</button></td>
               </tr>
             </table>
           </div>
@@ -265,15 +282,15 @@
             <table v-show="COM">
               <tr>
                 <td>Pattern</td>
-                <td><input type="text" v-model="pattern" /></td>
+                <td><input type="text" v-model="pattern" /><span class="required"></span></td>
               </tr>
               <tr>
                 <td>Color</td>
-                <td><input type="text" v-model="color" /></td>
+                <td><input type="text" v-model="color" /><span class="required"></span></td>
               </tr>
               <tr>
                 <td>Source</td>
-                <td><input type="text" v-model="source" /></td>
+                <td><input type="text" v-model="source" /><span class="required"></span></td>
               </tr>
               <tr>
                 <td>Fabric Width (in)</td>
@@ -335,7 +352,7 @@
                     >
                       {{ pleats.style }}
                     </option>
-                  </select>
+                  </select><span class="required"></span>
                 </td>
               </tr>
               <tr>
@@ -349,7 +366,7 @@
                     >
                       {{ pin.style }}
                     </option>
-                  </select>
+                  </select><span class="required"></span>
                 </td>
               </tr>
             </table>
@@ -369,7 +386,7 @@
                     v-model.number="rodWidth"
                     @change="update"
                     min="0"
-                  />
+                  /><span class="required"></span>
                 </td>
               </tr>
               <tr>
@@ -381,7 +398,7 @@
                     v-model.number="leftReturn"
                     @change="update"
                     min="0"
-                  />
+                  /><span class="required"></span>
                 </td>
               </tr>
               <tr>
@@ -393,7 +410,7 @@
                     v-model.number="rightReturn"
                     @change="update"
                     min="0"
-                  />
+                  /><span class="required"></span>
                 </td>
               </tr>
               <tr>
@@ -405,7 +422,7 @@
                     v-model.number="overlap"
                     @change="update"
                     min="0"
-                  />
+                  /><span class="required"></span>
                 </td>
               </tr>
               <tr>
@@ -453,7 +470,7 @@
                     min="0"
                     max="180"
                     @change="update()"
-                  />
+                  /><span class="required"></span>
                 </td>
               </tr>
               <tr>
@@ -615,7 +632,7 @@
                     type="text"
                     v-model="trimming.horizontal.pattern"
                     @change="update"
-                  />
+                  /><span class="required"></span>
                 </td>
               </tr>
               <tr v-show="trimming.horizontal.COM">
@@ -625,13 +642,13 @@
                     type="text"
                     v-model="trimming.horizontal.color"
                     @change="update"
-                  />
+                  /><span class="required"></span>
                 </td>
               </tr>
               <tr v-show="trimming.horizontal.COM">
                 <td>Source</td>
                 <td>
-                  <input type="text" v-model="trimming.horizontal.source" />
+                  <input type="text" v-model="trimming.horizontal.source" /><span class="required"></span>
                 </td>
               </tr>
 
@@ -714,19 +731,19 @@
               <tr v-show="trimming.vertical.COM">
                 <td>Pattern</td>
                 <td>
-                  <input type="text" v-model="trimming.vertical.pattern" />
+                  <input type="text" v-model="trimming.vertical.pattern" /><span class="required"></span>
                 </td>
               </tr>
               <tr v-show="trimming.vertical.COM">
                 <td>Color</td>
                 <td>
-                  <input type="text" v-model="trimming.vertical.color" />
+                  <input type="text" v-model="trimming.vertical.color" /><span class="required"></span>
                 </td>
               </tr>
               <tr v-show="trimming.vertical.COM">
                 <td>Source</td>
                 <td>
-                  <input type="text" v-model="trimming.vertical.source" />
+                  <input type="text" v-model="trimming.vertical.source" /><span class="required"></span>
                 </td>
               </tr>
 
@@ -742,6 +759,24 @@
             </table>
           </div>
         </div>
+
+        <!-------------------- Project Name --------------------->
+        <div class="flex-container">
+          <div class="section">
+            <h1>Notes</h1>
+            <table>
+              <tr>
+                <td>Label</td>
+                <td>
+                  <input type="text" v-model="draperyLabel" @change="update()">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+
+
       </div>
     </div>
 
@@ -793,6 +828,7 @@
           interliningCost: 0,
           blackout: false,
           blackoutCost: 0,
+          draperyLabel: "",
           pinSetting: "",
           COMyardage: 0,
           fabricNeededForRepeat: 0,
