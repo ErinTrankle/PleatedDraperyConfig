@@ -62,7 +62,6 @@
       }
 
       table {
-
       }
       td {
         text-align: left;
@@ -87,7 +86,6 @@
       }
       .required {
         color: red;
-        
       }
       .required::after {
         content: "*";
@@ -144,23 +142,22 @@
                 <td>{{ interliningColor }}</td>
               </tr>
               <tr>
-                <td class="bold">Horizontal Trimming</td>
-                <td>
-                  {{ trimming.horizontal.pattern }} {{ trimming.horizontal.color
-                  }}
-                </td>
-              </tr>
-              <tr>
                 <td class="bold">Vertical Trimming</td>
                 <td>
                   {{ trimming.vertical.pattern }} {{ trimming.vertical.color }}
                 </td>
               </tr>
               <tr>
-                <td class="bold">Label</td>
+                <td class="bold">Horizontal Trimming</td>
                 <td>
-                  {{ draperyLabel }}
+                  {{ trimming.horizontal.pattern }} {{ trimming.horizontal.color
+                  }}
                 </td>
+              </tr>
+
+              <tr>
+                <td class="bold">Label</td>
+                <td>{{ draperyLabel }}</td>
               </tr>
               <tr style="height: 50px"></tr>
               <tr>
@@ -185,7 +182,9 @@
               </tr>
               <tr style="height: 50px"></tr>
               <tr>
-                <td><button>Add to Cart</button> <button>Save to Projects</button></td>
+                <td>
+                  <button>Add to Cart</button> <button>Save to Projects</button>
+                </td>
               </tr>
             </table>
           </div>
@@ -282,15 +281,27 @@
             <table v-show="COM">
               <tr>
                 <td>Pattern</td>
-                <td><input type="text" v-model="pattern" /><span class="required"></span></td>
+                <td>
+                  <input type="text" v-model="pattern" /><span
+                    class="required"
+                  ></span>
+                </td>
               </tr>
               <tr>
                 <td>Color</td>
-                <td><input type="text" v-model="color" /><span class="required"></span></td>
+                <td>
+                  <input type="text" v-model="color" /><span
+                    class="required"
+                  ></span>
+                </td>
               </tr>
               <tr>
                 <td>Source</td>
-                <td><input type="text" v-model="source" /><span class="required"></span></td>
+                <td>
+                  <input type="text" v-model="source" /><span
+                    class="required"
+                  ></span>
+                </td>
               </tr>
               <tr>
                 <td>Fabric Width (in)</td>
@@ -351,8 +362,8 @@
                       :key="pleats.id"
                     >
                       {{ pleats.style }}
-                    </option>
-                  </select><span class="required"></span>
+                    </option></select
+                  ><span class="required"></span>
                 </td>
               </tr>
               <tr>
@@ -365,8 +376,8 @@
                       :key="pin.id"
                     >
                       {{ pin.style }}
-                    </option>
-                  </select><span class="required"></span>
+                    </option></select
+                  ><span class="required"></span>
                 </td>
               </tr>
             </table>
@@ -556,6 +567,110 @@
           <div class="section">
             <h1>Trimming</h1>
 
+            <!------------ Vertical ------------------->
+            <table>
+              <tr>
+                <td>Vertical Trimming</td>
+                <td>
+                  <select
+                    v-model="trimming.vertical.included"
+                    @change="update()"
+                  >
+                    <option :value="true">Yes</option>
+                    <option :value="false">No</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+
+            <table v-show="trimming.vertical.included">
+              <!-------COM Question-->
+              <tr>
+                <td>COM</td>
+
+                <td>
+                  <select v-model="trimming.vertical.COM" @change="update()">
+                    <option :value="true">Yes</option>
+                    <option :value="false">No</option>
+                  </select>
+                </td>
+                <td class="note">
+                  If user selects YES they will fill in their own trimming
+                  information.
+                </td>
+              </tr>
+
+              <!------------- COM False ------------>
+
+              <tr v-show="!trimming.vertical.COM">
+                <td>Pattern</td>
+                <td>
+                  <select v-model="trimming.vertical.pattern">
+                    <option value=""></option>
+                  </select>
+                </td>
+                <td class="note">Dropdown will show all RM COCO trims</td>
+              </tr>
+              <tr v-show="!trimming.vertical.COM">
+                <td>Color</td>
+                <td>
+                  <select v-model="trimming.vertical.color">
+                    <option value=""></option>
+                  </select>
+                </td>
+                <td class="note">Show color options for selected trim</td>
+              </tr>
+              <tr v-show="!trimming.vertical.COM">
+                <td>Price / yd</td>
+                <td>
+                  <input
+                    type="number"
+                    v-model="trimming.vertical.price"
+                    @change="update"
+                  />
+                </td>
+                <td class="note">Populate based on trim selection</td>
+              </tr>
+
+              <!-------------- COM True ------------------>
+
+              <tr v-show="trimming.vertical.COM">
+                <td>Pattern</td>
+                <td>
+                  <input type="text" v-model="trimming.vertical.pattern" /><span
+                    class="required"
+                  ></span>
+                </td>
+              </tr>
+              <tr v-show="trimming.vertical.COM">
+                <td>Color</td>
+                <td>
+                  <input type="text" v-model="trimming.vertical.color" /><span
+                    class="required"
+                  ></span>
+                </td>
+              </tr>
+              <tr v-show="trimming.vertical.COM">
+                <td>Source</td>
+                <td>
+                  <input type="text" v-model="trimming.vertical.source" /><span
+                    class="required"
+                  ></span>
+                </td>
+              </tr>
+
+              <!------ Always show ---------------->
+              <tr>
+                <td>Yardage required</td>
+                <td>
+                  <span class="bold"
+                    >{{ trimming.vertical.yardageRequired }}</span
+                  >
+                </td>
+              </tr>
+            </table>
+            <br /><br />
+
             <!------------ Horizontal ------------------->
             <table>
               <tr>
@@ -618,7 +733,11 @@
               <tr v-show="!trimming.horizontal.COM">
                 <td>Price / yd</td>
                 <td>
-                  <input type="number" v-model="trimming.horizontal.price" @change="update" />
+                  <input
+                    type="number"
+                    v-model="trimming.horizontal.price"
+                    @change="update"
+                  />
                 </td>
                 <td class="note">Populate based on trim selection</td>
               </tr>
@@ -648,7 +767,10 @@
               <tr v-show="trimming.horizontal.COM">
                 <td>Source</td>
                 <td>
-                  <input type="text" v-model="trimming.horizontal.source" /><span class="required"></span>
+                  <input
+                    type="text"
+                    v-model="trimming.horizontal.source"
+                  /><span class="required"></span>
                 </td>
               </tr>
 
@@ -658,101 +780,6 @@
                 <td>
                   <span class="bold"
                     >{{ trimming.horizontal.yardageRequired }}</span
-                  >
-                </td>
-              </tr>
-            </table>
-
-            <br /><br />
-
-            <!------------ Vertical ------------------->
-            <table>
-              <tr>
-                <td>Vertical Trimming</td>
-                <td>
-                  <select
-                    v-model="trimming.vertical.included"
-                    @change="update()"
-                  >
-                    <option :value="true">Yes</option>
-                    <option :value="false">No</option>
-                  </select>
-                </td>
-              </tr>
-            </table>
-
-            <table v-show="trimming.vertical.included">
-              <!-------COM Question-->
-              <tr>
-                <td>COM</td>
-
-                <td>
-                  <select v-model="trimming.vertical.COM" @change="update()">
-                    <option :value="true">Yes</option>
-                    <option :value="false">No</option>
-                  </select>
-                </td>
-                <td class="note">
-                  If user selects YES they will fill in their own trimming
-                  information.
-                </td>
-              </tr>
-
-              <!------------- COM False ------------>
-
-              <tr v-show="!trimming.vertical.COM">
-                <td>Pattern</td>
-                <td>
-                  <select v-model="trimming.vertical.pattern">
-                    <option value=""></option>
-                  </select>
-                </td>
-                <td class="note">Dropdown will show all RM COCO trims</td>
-              </tr>
-              <tr v-show="!trimming.vertical.COM">
-                <td>Color</td>
-                <td>
-                  <select v-model="trimming.vertical.color">
-                    <option value=""></option>
-                  </select>
-                </td>
-                <td class="note">Show color options for selected trim</td>
-              </tr>
-              <tr v-show="!trimming.vertical.COM">
-                <td>Price / yd</td>
-                <td>
-                  <input type="number" v-model="trimming.vertical.price" @change="update" />
-                </td>
-                <td class="note">Populate based on trim selection</td>
-              </tr>
-
-              <!-------------- COM True ------------------>
-
-              <tr v-show="trimming.vertical.COM">
-                <td>Pattern</td>
-                <td>
-                  <input type="text" v-model="trimming.vertical.pattern" /><span class="required"></span>
-                </td>
-              </tr>
-              <tr v-show="trimming.vertical.COM">
-                <td>Color</td>
-                <td>
-                  <input type="text" v-model="trimming.vertical.color" /><span class="required"></span>
-                </td>
-              </tr>
-              <tr v-show="trimming.vertical.COM">
-                <td>Source</td>
-                <td>
-                  <input type="text" v-model="trimming.vertical.source" /><span class="required"></span>
-                </td>
-              </tr>
-
-              <!------ Always show ---------------->
-              <tr>
-                <td>Yardage required</td>
-                <td>
-                  <span class="bold"
-                    >{{ trimming.vertical.yardageRequired }}</span
                   >
                 </td>
               </tr>
@@ -768,15 +795,16 @@
               <tr>
                 <td>Label</td>
                 <td>
-                  <input type="text" v-model="draperyLabel" @change="update()">
+                  <input
+                    type="text"
+                    v-model="draperyLabel"
+                    @change="update()"
+                  />
                 </td>
               </tr>
             </table>
           </div>
         </div>
-
-
-
       </div>
     </div>
 
