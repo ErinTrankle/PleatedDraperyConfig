@@ -76,7 +76,7 @@ export function calculateD1(
         let x = Math.round(
           (totalWidths * unlinedLaborZeroTo108 +
             ((finishedLengthRounded + 18) / 36) * pricePoint * totalWidths) *
-            2
+          2
         );
 
         /////// drapery surcharge
@@ -94,7 +94,7 @@ export function calculateD1(
           (totalWidths * unlinedLabor108to120 +
             totalWidths * 1 +
             ((120 + 18) / 36) * pricePoint * totalWidths) *
-            2
+          2
         );
 
         // drapery surcharge
@@ -113,7 +113,7 @@ export function calculateD1(
           (totalWidths * unlinedLabor120to132 +
             totalWidths * 1 +
             ((132 + 18) / 36) * pricePoint * totalWidths) *
-            2
+          2
         );
 
         // drapery surcharge
@@ -132,7 +132,7 @@ export function calculateD1(
           (totalWidths * unlinedLabor132to144 +
             totalWidths * 1 +
             ((144 + 18) / 36) * pricePoint * totalWidths) *
-            2
+          2
         );
 
         // drapery surcharge
@@ -152,7 +152,7 @@ export function calculateD1(
           (totalWidths * unlinedLabor132to144 +
             totalWidths * 1 +
             ((144 + 18) / 36) * pricePoint * totalWidths) *
-            2
+          2
         );
         //calculate the cost for each additional 12 inches
         let extraCostPer12Inches =
@@ -210,8 +210,8 @@ export function calculateD1(
           (totalWidths * linedLaborZeroTo108 +
             (((finishedLengthRounded + 14) / 36) * pricePoint +
               ((finishedLengthRounded + 14) / 36) * liningCost) *
-              totalWidths) *
-            2
+            totalWidths) *
+          2
         );
         /////// drapery surcharge
         if (totalWidths == 1) {
@@ -227,8 +227,8 @@ export function calculateD1(
         let x = Math.round(
           (totalWidths * linedLabor108to120 +
             (((120 + 14) / 36) * pricePoint + ((120 + 18) / 36) * liningCost) *
-              totalWidths) *
-            2
+            totalWidths) *
+          2
         );
         /////// drapery surcharge
         if (totalWidths == 1) {
@@ -245,8 +245,8 @@ export function calculateD1(
         let x = Math.round(
           (totalWidths * linedLabor120to132 +
             (((132 + 14) / 36) * pricePoint + ((132 + 14) / 36) * liningCost) *
-              totalWidths) *
-            2
+            totalWidths) *
+          2
         );
         /////// drapery surcharge
         if (totalWidths == 1) {
@@ -263,8 +263,8 @@ export function calculateD1(
         let x = Math.round(
           (totalWidths * (linedLabor132to144 + 1) +
             (((144 + 14) / 36) * pricePoint + ((144 + 14) / 36) * liningCost) *
-              totalWidths) *
-            2
+            totalWidths) *
+          2
         );
         /////// drapery surcharge
         if (totalWidths == 1) {
@@ -281,8 +281,8 @@ export function calculateD1(
         let x = Math.round(
           (totalWidths * (linedLabor132to144 + 1) +
             (((144 + 14) / 36) * pricePoint + ((144 + 14) / 36) * liningCost) *
-              totalWidths) *
-            2
+            totalWidths) *
+          2
         );
 
         let extraCostPer12Inches =
@@ -341,7 +341,7 @@ export function calculateD1(
         let x = Math.round(
           (totalWidths * COMunlinedLaborZeroTo108 +
             ((finishedLengthRounded + 18) / 36) * 0 * totalWidths) *
-            2
+          2
         );
 
         /////// drapery surcharge
@@ -355,43 +355,17 @@ export function calculateD1(
       }
       ////////////// > 108 <= 120 ////////////////
       else if (finishedLength > 108 && finishedLength <= 120) {
+        // let x = Math.round(
+        //   (totalWidths * COMunlinedLabor108to120 +
+        //     ((120 + 18) / 36) * 0 * totalWidths) *
+        //     2
+        // );
+
         let x = Math.round(
-          (totalWidths * COMunlinedLabor108to120 +
-            ((120 + 18) / 36) * 0 * totalWidths) *
-            2
+          ((totalWidths * COMunlinedLabor108to120) + (totalWidths * 1)) * 2
         );
-        /////// drapery surcharge
-        if (totalWidths == 1) {
-          return Math.round(x * 1.2);
-        } else if (totalWidths == 2) {
-          return Math.round(x * 1.1);
-        } else {
-          return x;
-        }
-      }
-      ////////////// > 120 <= 132 ////////////////
-      else if (finishedLength > 120 && finishedLength <= 132) {
-        let x = Math.round(
-          (totalWidths * COMunlinedLabor120to132 +
-            ((132 + 18) / 36) * 0 * totalWidths) *
-            2
-        );
-        /////// drapery surcharge
-        if (totalWidths == 1) {
-          return Math.round(x * 1.2);
-        } else if (totalWidths == 2) {
-          return Math.round(x * 1.1);
-        } else {
-          return x;
-        }
-      }
-      ////////////// > 132 <= 144 ////////////////
-      else if (finishedLength > 132 && finishedLength <= 144) {
-        let x = Math.round(
-          (totalWidths * COMunlinedLabor132to144 +
-            ((144 + 18) / 36) * 0 * totalWidths) *
-            2
-        );
+
+
         /////// drapery surcharge
         if (totalWidths == 1) {
           return Math.round(x * 1.2);
@@ -402,20 +376,18 @@ export function calculateD1(
         }
       }
 
-      ////////////// > 144 ////////////////
-      else if (finishedLength > 144) {
-        // get base cost for first 144 inches
+      ////////////// > 120 ////////////////
+      else if (finishedLength > 120) {
+        // get base cost for first 120 inches
         let x = Math.round(
-          (totalWidths * COMunlinedLabor132to144 +
-            ((144 + 18) / 36) * 0 * totalWidths) *
-            2
+          ((totalWidths * COMunlinedLabor108to120) + (totalWidths * 1)) * 2
         );
         // calculate cost for each additional 12 inches
         let extraCostPer12Inches = Math.round(
           totalWidths * COMunlinedEachAdditional12 * 2
         );
         // calculate how many extra 12 inch increments
-        let multiplier = Math.ceil((finishedLength - 144) / 12);
+        let multiplier = Math.ceil((finishedLength - 120) / 12);
         // caclulate additional cost
         let extraCost = Math.round(extraCostPer12Inches * multiplier);
         let y = x + extraCost;
@@ -428,9 +400,14 @@ export function calculateD1(
         } else {
           return y;
         }
-      } else {
+      }
+
+
+
+      else {
         console.log("- finishedLength is out of scope");
       }
+
     }
     ////////////// LINED CALCULATIONS ////////////////
     else if (lining == true) {
@@ -462,8 +439,8 @@ export function calculateD1(
           (totalWidths * COMlinedLaborZeroTo108 +
             (((finishedLengthRounded + 14) / 36) * 0 +
               ((finishedLengthRounded + 14) / 36) * COMliningCost) *
-              totalWidths) *
-            2
+            totalWidths) *
+          2
         );
         /////// drapery surcharge
         if (totalWidths == 1) {
@@ -480,8 +457,8 @@ export function calculateD1(
         let x = Math.round(
           (totalWidths * COMlinedLabor108to120 +
             (((120 + 14) / 36) * 0 + ((120 + 18) / 36) * COMliningCost) *
-              totalWidths) *
-            2
+            totalWidths) *
+          2
         );
         /////// drapery surcharge
         if (totalWidths == 1) {
@@ -493,56 +470,18 @@ export function calculateD1(
         }
       }
 
-      ////////////// > 120 <= 132 ////////////////
-      else if (finishedLength > 120 && finishedLength <= 132) {
+      ////////////// > 120 ////////////////
+      else if (finishedLength > 120) {
         let x = Math.round(
-          (totalWidths * COMlinedLabor120to132 +
-            (((132 + 14) / 36) * 0 + ((132 + 14) / 36) * COMliningCost) *
-              totalWidths) *
-            2
+          (totalWidths * COMlinedLabor108to120 +
+            (((120 + 14) / 36) * 0 + ((120 + 18) / 36) * COMliningCost) *
+            totalWidths) *
+          2
         );
-        /////// drapery surcharge
-        if (totalWidths == 1) {
-          return Math.round(x * 1.2);
-        } else if (totalWidths == 2) {
-          return Math.round(x * 1.1);
-        } else {
-          return x;
-        }
-      }
+        let extraCostPer12Inches = Math.round((((totalWidths * 12) / 36) * COMliningCost) + (COMlinedEachAdditional12 * totalWidths)) * 2;
 
-      ////////////// > 132 <= 144 ////////////////
-      else if (finishedLength > 132 && finishedLength <= 144) {
-        let x = Math.round(
-          (totalWidths * COMlinedLabor132to144 +
-            (((144 + 14) / 36) * 0 + ((144 + 14) / 36) * COMliningCost) *
-              totalWidths) *
-            2
-        );
-        /////// drapery surcharge
-        if (totalWidths == 1) {
-          return Math.round(x * 1.2);
-        } else if (totalWidths == 2) {
-          return Math.round(x * 1.1);
-        } else {
-          return x;
-        }
-      }
 
-      ////////////// > 144 ////////////////
-      else if (finishedLength > 144) {
-        let x = Math.round(
-          (totalWidths * COMlinedLabor132to144 +
-            (((144 + 14) / 36) * 0 + ((144 + 18) / 36) * COMliningCost) *
-              totalWidths) *
-            2
-        );
-        let extraCostPer12Inches =
-          Math.round(
-            ((totalWidths * 12) / 36) * COMliningCost +
-              COMlinedEachAdditional12 * totalWidths
-          ) * 2;
-        let multiplier = Math.ceil((finishedLength - 144) / 12);
+        let multiplier = Math.ceil((finishedLength - 120) / 12);
         let extraCost = Math.ceil(extraCostPer12Inches * multiplier);
 
         let y = x + extraCost;
