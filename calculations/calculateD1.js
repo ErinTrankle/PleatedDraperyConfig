@@ -88,6 +88,8 @@ export function calculateD1(
           return x;
         }
       }
+
+
       ////////////// > 108 <= 120 ////////////////
       else if (finishedLength > 108 && finishedLength <= 120) {
         let x = Math.round(
@@ -106,52 +108,13 @@ export function calculateD1(
           return x;
         }
       }
-
-      ////////////// > 120 <= 132 ////////////////
-      else if (finishedLength > 120 && finishedLength <= 132) {
+      ////////////// > 120 ////////////////
+      else if (finishedLength > 120) {
+        //get base cost of first 120 inches
         let x = Math.round(
-          (totalWidths * unlinedLabor120to132 +
+          (totalWidths * unlinedLabor108to120 +
             totalWidths * 1 +
-            ((132 + 18) / 36) * pricePoint * totalWidths) *
-          2
-        );
-
-        // drapery surcharge
-        if (totalWidths == 1) {
-          return Math.round(x * 1.2);
-        } else if (totalWidths == 2) {
-          return Math.round(x * 1.1);
-        } else {
-          return x;
-        }
-      }
-
-      ////////////// > 132 <= 144 ////////////////
-      else if (finishedLength > 132 && finishedLength <= 144) {
-        let x = Math.round(
-          (totalWidths * unlinedLabor132to144 +
-            totalWidths * 1 +
-            ((144 + 18) / 36) * pricePoint * totalWidths) *
-          2
-        );
-
-        // drapery surcharge
-        if (totalWidths == 1) {
-          return Math.round(x * 1.2);
-        } else if (totalWidths == 2) {
-          return Math.round(x * 1.1);
-        } else {
-          return x;
-        }
-      }
-
-      ////////////// > 144 ////////////////
-      else if (finishedLength > 144) {
-        //get base cost of first 144 inches
-        let x = Math.round(
-          (totalWidths * unlinedLabor132to144 +
-            totalWidths * 1 +
-            ((144 + 18) / 36) * pricePoint * totalWidths) *
+            ((120 + 18) / 36) * pricePoint * totalWidths) *
           2
         );
         //calculate the cost for each additional 12 inches
@@ -160,7 +123,7 @@ export function calculateD1(
             unlinedEachAdditional12 * totalWidths) *
           2;
         //calculate the quantity of 12 inch increments
-        let multiplier = Math.ceil((finishedLength - 144) / 12);
+        let multiplier = Math.ceil((finishedLength - 120) / 12);
         //calculate the additional cost
         let extraCost = Math.round(extraCostPer12Inches * multiplier);
 
@@ -178,6 +141,8 @@ export function calculateD1(
         console.log("- finishedLength is out of scope");
       }
     }
+
+
     ////////////// LINED CALCULATIONS ////////////////
     else if (lining == true) {
       console.log("- lining true");
@@ -230,6 +195,7 @@ export function calculateD1(
             totalWidths) *
           2
         );
+
         /////// drapery surcharge
         if (totalWidths == 1) {
           return Math.round(x * 1.2);
@@ -240,47 +206,11 @@ export function calculateD1(
         }
       }
 
-      ////////////// > 120 <= 132 ////////////////
-      else if (finishedLength > 120 && finishedLength <= 132) {
+      ////////////// > 120 ////////////////
+      else if (finishedLength > 120) {
         let x = Math.round(
-          (totalWidths * linedLabor120to132 +
-            (((132 + 14) / 36) * pricePoint + ((132 + 14) / 36) * liningCost) *
-            totalWidths) *
-          2
-        );
-        /////// drapery surcharge
-        if (totalWidths == 1) {
-          return Math.round(x * 1.2);
-        } else if (totalWidths == 2) {
-          return Math.round(x * 1.1);
-        } else {
-          return x;
-        }
-      }
-
-      ////////////// > 132 <= 144 ////////////////
-      else if (finishedLength > 132 && finishedLength <= 144) {
-        let x = Math.round(
-          (totalWidths * (linedLabor132to144 + 1) +
-            (((144 + 14) / 36) * pricePoint + ((144 + 14) / 36) * liningCost) *
-            totalWidths) *
-          2
-        );
-        /////// drapery surcharge
-        if (totalWidths == 1) {
-          return Math.round(x * 1.2);
-        } else if (totalWidths == 2) {
-          return Math.round(x * 1.1);
-        } else {
-          return x;
-        }
-      }
-
-      ////////////// > 144 ////////////////
-      else if (finishedLength > 144) {
-        let x = Math.round(
-          (totalWidths * (linedLabor132to144 + 1) +
-            (((144 + 14) / 36) * pricePoint + ((144 + 14) / 36) * liningCost) *
+          (totalWidths * linedLabor108to120 +
+            (((120 + 14) / 36) * pricePoint + ((120 + 18) / 36) * liningCost) *
             totalWidths) *
           2
         );
@@ -291,7 +221,7 @@ export function calculateD1(
             linedEachAdditional12 * totalWidths) *
           2;
 
-        let multiplier = Math.ceil((finishedLength - 144) / 12);
+        let multiplier = Math.ceil((finishedLength - 120) / 12);
         let extraCost = Math.ceil(extraCostPer12Inches * multiplier);
 
         let y = x + extraCost;
