@@ -285,11 +285,6 @@ export function calculateD1(
       }
       ////////////// > 108 <= 120 ////////////////
       else if (finishedLength > 108 && finishedLength <= 120) {
-        // let x = Math.round(
-        //   (totalWidths * COMunlinedLabor108to120 +
-        //     ((120 + 18) / 36) * 0 * totalWidths) *
-        //     2
-        // );
 
         let x = Math.round(
           ((totalWidths * COMunlinedLabor108to120) + (totalWidths * 1)) * 2
