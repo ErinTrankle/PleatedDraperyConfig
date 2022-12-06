@@ -9,6 +9,7 @@ export function calculcateTrimming(
 	fabricWidth
 ) {
 	console.log("calculateTrimming() start");
+	console.log(JSON.stringify(trimmingData));
 
 	var trimmingResults = {
 		vertical: {},
@@ -31,12 +32,10 @@ export function calculcateTrimming(
 			trimmingData.vertical.COM,
 			panelOrPair
 		);
-		console.log("- vertical labor cost: ", trimmingResults.vertical.labor);
 
 		trimmingResults.vertical.cost = Math.round(
-			trimmingData.vertical.price * trimmingResults.vertical.yardageRequired
-		);
-		console.log("- vertical trim cost: ", trimmingResults.vertical.cost);
+			trimmingData.vertical.price * trimmingResults.vertical.yardageRequired * 2
+		); //multiplying by 2 to get retail
 
 		trimmingResults.vertical.total =
 			trimmingResults.vertical.cost + trimmingResults.vertical.labor;
@@ -60,24 +59,21 @@ export function calculcateTrimming(
 			totalWidths,
 			trimmingData.horizontal.COM
 		);
-		console.log("- horizontal labor cost: ", trimmingResults.horizontal.labor);
 
 		trimmingResults.horizontal.cost = Math.round(
-			trimmingData.horizontal.price * trimmingResults.horizontal.yardageRequired
-		);
-		console.log("- horizontal trim cost: ", trimmingResults.horizontal.cost);
+			trimmingData.horizontal.price *
+				trimmingResults.horizontal.yardageRequired *
+				2
+		); //multiplying by 2 to get retail
 
 		trimmingResults.horizontal.total =
 			trimmingResults.horizontal.cost + trimmingResults.horizontal.labor;
-
-		console.log("- horizontal trim total: ", trimmingResults.horizontal.total);
 	} else if (trimmingData.horizontal.included == false) {
 		trimmingResults.horizontal.yardageRequired = 0;
 		trimmingResults.horizontal.labor = 0;
 		trimmingResults.horizontal.cost = 0;
 		trimmingResults.horizontal.total = 0;
 	} else {
-		console.log("- bad data: is vertical trimming true or false?");
 	}
 
 	trimmingResults.total.cost =
